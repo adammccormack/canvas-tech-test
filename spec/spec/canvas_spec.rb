@@ -10,7 +10,7 @@ describe Canvas do
 
       canvas.create(5,6)
 
-      expect(canvas.size).to eq(30)
+      expect(canvas).to eq(30)
     end
   end
 
