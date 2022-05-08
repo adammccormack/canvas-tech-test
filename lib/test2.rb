@@ -27,7 +27,7 @@ numbers = (1..size).map {|i| i
   ["O", "O", "O", "O", "O"]]
 
 def move_left(row, col)
-  while col > 0
+  while col >= 0
     row = row
     col = col-1
     pos_value = @grid[row][col]
@@ -59,10 +59,19 @@ def fill_up(row, col, grid = '@grid')
        new_value = "N"
        @grid[row][col] = new_value
     elsif pos_value != "O"
-      break
+      next
     else
     end
   end
+end
+
+
+# fill_down = @grid[0][4] = 'X'
+#             @grid[1][4] = 'X'
+#             @grid[2][4] = 'X'
+def fill_down(row, col, grid = '@grid')
+  grid = grid
+
 end
 
 def move_right(row, col) 
