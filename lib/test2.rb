@@ -49,14 +49,15 @@ end
 
 def fill_up(row, col, grid = '@grid')
   grid = grid
-  while row >= 0
+  new_value = "N"
+  @grid[row][col] = new_value
+  while row > 0
     row = row-1
     col = col
     pos_value = grid[row][col]
     p "row_index: #{row}, col_index: #{col}"
     p "position_value: #{pos_value}"
     if pos_value == "O"
-       new_value = "N"
        @grid[row][col] = new_value
     elsif pos_value != "O"
       next
@@ -71,8 +72,23 @@ end
 #             @grid[2][4] = 'X'
 def fill_down(row, col, grid = '@grid')
   grid = grid
-
+  new_value = "N"
+  @grid[row][col] = new_value
+  while row >= 0
+    row = row+1
+    col = col
+    pos_value = grid[row][col]
+    p "row_index: #{row}, col_index: #{col}"
+    p "position_value: #{pos_value}"
+    if pos_value == "O"
+       @grid[row][col] = new_value
+    elsif pos_value != "O"
+      next
+    else
+    end
+  end
 end
+
 
 def move_right(row, col) 
   while col >= 0
