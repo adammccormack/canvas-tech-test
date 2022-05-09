@@ -21,12 +21,12 @@ white = numbers.map {|i| i = 'O'}
 
 def move_left(row, col)
   while col >= 0
+    fill_up(row, col, @grid) unless col < 0
     row = row
     col = col-1
     pos_value = @grid[row][col]
-    p "row_index: #{row}, col_index: #{col}"
-    p "position_value: #{pos_value}"
-    fill_up(row, col, @grid) unless col < 0
+    # p "row_index: #{row}, col_index: #{col}"
+    # p "position_value: #{pos_value}"
     # fill_down(row, col, @grid)
     if pos_value != "O"
      break
