@@ -22,12 +22,12 @@ white = numbers.map {|i| i = 'O'}
 def move_left(row, col)
   while col >= 0
     fill_up(row, col, @grid) unless col < 0
+    fill_down(row, col, @grid) unless col < 0
     row = row
     col = col-1
     pos_value = @grid[row][col]
     # p "row_index: #{row}, col_index: #{col}"
     # p "position_value: #{pos_value}"
-    # fill_down(row, col, @grid)
     if pos_value != "O"
      break
     end
@@ -55,6 +55,7 @@ def fill_up(row, col, grid = '@grid')
        @grid[row][col] = new_value
     elsif pos_value != "O"
       next
+      # or break
     else
     end
   end
@@ -72,16 +73,27 @@ def fill_down(row, col, grid = '@grid')
   while row >= 0
     row = row+1
     col = col
-    pos_value = grid[row][col]
+    pos_value = @grid[row][col]
     p "row_index: #{row}, col_index: #{col}"
     p "position_value: #{pos_value}"
-    if pos_value != "O"
-      break
-    elsif row >= @grid.length-1
-      break
-    else
+  if pos_value != "O"
+    next
+  elsif row >= @grid.length-1
+    break
+  elsif pos_value == "O"
+      @grid[row][col] = new_value
+  elsif row > @grid.length-1
+    break
+  else
     end
   end
+end
+
+if pos_value != "O"
+  next
+elsif row >= @grid.length-1
+  break
+else
 end
 
 def move_right(row, col) 
