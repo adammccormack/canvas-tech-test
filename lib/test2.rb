@@ -1,18 +1,29 @@
-def reset
-  x = 5
-  y = 6
-  
-  size = x*y
-  
-  numbers = (1..size).map {|i| i
-  }
-  #convert to numbers
-  @grid = numbers.each_slice(x).to_a
-  
-  # Convert to white
-  white = numbers.map {|i| i = 'O'}
-  @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+
+# I M N - Create a new M x N canvas with all pixels coloured white (O).
+# C - Clears the canvas, setting all pixels to white (O).
+  def reset(y = 6, x = 5)
+    x = 5
+    y = 6
+    
+    size = x*y
+    
+    numbers = (1..size).map {|i| i
+    }
+    #convert to numbers
+    @grid = numbers.each_slice(x).to_a
+    
+    # Convert to white
+    white = numbers.map {|i| i = 'O'}
+    @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
   end
+
+# L X Y C
+
+  def colour_pixel(row, col, colour)
+    new_value = colour
+    @grid[row][col] = new_value
+  end
+
 
   def fill(row,col)
     move_right(row,col)
