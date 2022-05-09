@@ -1,5 +1,6 @@
 require 'byebug'
 
+def reset
 x = 5
 y = 6
 
@@ -14,7 +15,7 @@ numbers = (1..size).map {|i| i
 # Convert to white
 white = numbers.map {|i| i = 'O'}
 @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
-
+end
 # to get move_left working in IRB, you need to run all teh above code first, to create a grid
 # then you need to pass that grid into the instance variable grid method below
 # then move_left can call @grid when calculating the values
@@ -61,11 +62,6 @@ def fill_up(row, col, grid = '@grid')
   end
 end
 
-
-# fill_down = @grid[0][4] = 'X'
-#             @grid[1][4] = 'X'
-#             @grid[2][4] = 'X'
-
 def fill_down(row, col, grid = '@grid')
   grid = grid
   new_value = "N"
@@ -82,18 +78,9 @@ def fill_down(row, col, grid = '@grid')
     break
   elsif pos_value == "O"
       @grid[row][col] = new_value
-  elsif row > @grid.length-1
-    break
   else
     end
   end
-end
-
-if pos_value != "O"
-  next
-elsif row >= @grid.length-1
-  break
-else
 end
 
 def move_right(row, col) 
