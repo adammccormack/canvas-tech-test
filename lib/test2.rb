@@ -1,19 +1,31 @@
-def reset
-  x = 5
-  y = 6
-  
-  size = x*y
-  
-  numbers = (1..size).map {|i| i
-  }
-  #convert to numbers
-  @grid = numbers.each_slice(x).to_a
-  
-  # Convert to white
-  white = numbers.map {|i| i = 'O'}
-  @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+require 'byebug'
+# I M N - Create a new M x N canvas with all pixels coloured white (O).
+# C - Clears the canvas, setting all pixels to white (O).
+
+  def reset(y = 6, x = 5)
+    x = 5
+    y = 6
+    
+    size = x*y
+    
+    numbers = (1..size).map {|i| i
+    }
+    #convert to numbers
+    @grid = numbers.each_slice(x).to_a
+    
+    # Convert to white
+    white = numbers.map {|i| i = 'O'}
+    @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
   end
 
+# L X Y C
+
+  def colour_pixel(row, col, colour)
+    new_value = colour
+    @grid[row][col] = new_value
+  end
+
+# F X Y C
   def fill(row,col)
     move_right(row,col)
     move_left(row,col-1)
@@ -34,6 +46,7 @@ def reset
     end
   end
   
+  
   def fill_up(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
@@ -53,7 +66,61 @@ def reset
       end
     end
   end
+
+  # V X Y1 Y2 C
+  # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
+  def vert_draw(row1, row2, col, colour = '', grid = '@grid')
+    grid = grid
+    new_value = "N"
+    @grid[row1][col] = new_value
+    # fill to row2
+    # if row2 > row1, fill_down to row2
+    if row1 <= row2
+      while row1 >= 0 && row1 < @grid.length-1
+        row1 = row1+1
+        col = col
+        pos_value = @grid[row1][col]
+        p "row_index: #{row1}, col_index: #{col}"
+        p "position_value: #{pos_value}"
+        if row1 == row2
+          @grid[row1][col] = new_value
+          break
+        elsif pos_value != "O"
+          break
+        elsif row1 >= @grid.length-1
+          @grid[row1][col] = new_value
+          break
+        elsif pos_value == "O"
+            @grid[row1][col] = new_value
+        else
+        end
+      end
+
+    elsif row1 >= row2
+      # if row2 < row1, fill_up to row2
+      while row1 > 0
+        row1 = row1-1
+        col = col
+        pos_value = @grid[row1][col]
+        p "row_index: #{row1}, col_index: #{col}"
+        p "position_value: #{pos_value}"
+        if row1 == row2
+          @grid[row1][col] = new_value
+          break
+        elsif pos_value == "O"
+           @grid[row1][col] = new_value
+        elsif pos_value != "O"
+          next
+          # or break
+        else
+        end
+      end
+    else
+    end
+  end
   
+  # HX1 X2 YC
+  # need to adjust to only fill X1 to X2 going horizontally along Y.
   def fill_down(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
@@ -64,14 +131,14 @@ def reset
       pos_value = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{pos_value}"
-    if pos_value != "O"
-      break
-    elsif row >= @grid.length-1
-      @grid[row][col] = new_value
-      break
-    elsif pos_value == "O"
+      if pos_value != "O"
+        break
+      elsif row >= @grid.length-1
         @grid[row][col] = new_value
-    else
+        break
+      elsif pos_value == "O"
+          @grid[row][col] = new_value
+      else
       end
     end
   end
