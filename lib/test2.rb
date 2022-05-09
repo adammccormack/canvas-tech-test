@@ -11,6 +11,10 @@ numbers = (1..size).map {|i| i
 #convert to numbers
 @grid = numbers.each_slice(x).to_a
 
+def fill(row,col)
+  move_right(row,col)
+  move_left(row,col-1)
+end
 
 # Convert to white
 white = numbers.map {|i| i = 'O'}
