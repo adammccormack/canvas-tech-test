@@ -24,7 +24,7 @@
     @grid[row][col] = new_value
   end
 
-
+# F X Y C
   def fill(row,col)
     move_right(row,col)
     move_left(row,col-1)
@@ -45,6 +45,8 @@
     end
   end
   
+  # V X Y1 Y2 C 
+  # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
   def fill_up(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
@@ -65,6 +67,8 @@
     end
   end
   
+  # HX1 X2 YC
+  # need to adjust to only fill X1 to X2 going horizontally along Y.
   def fill_down(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
