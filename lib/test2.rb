@@ -35,18 +35,11 @@ def move_left(row, col)
   end
 end
 
-#now I want it to move left and fill_up as it goes along
-
-# fill_up(5,2,@grid)
-# fill_up(5,1,@grid)
-# fill_up(5,0,@grid)
-
-
 def fill_up(row, col, grid = '@grid')
   grid = grid
   new_value = "N"
   @grid[row][col] = new_value
-  while row >= 0
+  while row > 0
     row = row-1
     col = col
     pos_value = @grid[row][col]
@@ -83,27 +76,6 @@ def fill_down(row, col, grid = '@grid')
     end
   end
 end
-
-# def fill_down(row, col, grid = '@grid')
-#   grid = grid
-#   new_value = "N"
-#   @grid[row][col] = new_value
-#   while row >= 0
-#     row = row+1
-#     col = col
-#     pos_value = @grid[row][col]
-#     p "row_index: #{row}, col_index: #{col}"
-#     p "position_value: #{pos_value}"
-#   if pos_value != "O"
-#     next
-#   elsif row >= @grid.length-1
-#     break
-#   elsif pos_value == "O"
-#       @grid[row][col] = new_value
-#   else
-#     end
-#   end
-# end
 
 def move_right(row, col) 
   while col >= 0
