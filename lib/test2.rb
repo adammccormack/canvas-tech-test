@@ -75,10 +75,10 @@ def fill_down(row, col, grid = '@grid')
     pos_value = grid[row][col]
     p "row_index: #{row}, col_index: #{col}"
     p "position_value: #{pos_value}"
-    if pos_value == "O"
-       @grid[row][col] = new_value
-    elsif pos_value != "O"
-      next
+    if pos_value != "O"
+      break
+    elsif row >= @grid.length-1
+      break
     else
     end
   end
@@ -117,9 +117,10 @@ def move_down(row, col)
     pos_value = @grid[row][col]
     p "row_index: #{row}, col_index: #{col}"
     p "position_value: #{pos_value}"
-    if row >= @grid.length-1
+    if pos_value != "O"
       break
-    elsif pos_value != "O"
+    elsif row >= @grid.length-1
+      break
     else
     end
   end
