@@ -79,6 +79,8 @@ end
 
 def move_right(row, col) 
   while col >= 0
+    fill_up(row, col, @grid) unless col < 0
+    fill_down(row, col, @grid) unless col < 0
     row = row
     col = col+1
     pos_value = @grid[row][col]
