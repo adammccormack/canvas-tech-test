@@ -45,12 +45,12 @@ def fill_up(row, col, grid = '@grid')
   grid = grid
   new_value = "N"
   @grid[row][col] = new_value
-  while row > 0
+  while row >= 0
     row = row-1
     col = col
-    pos_value = grid[row][col]
-    # p "row_index: #{row}, col_index: #{col}"
-    # p "position_value: #{pos_value}"
+    pos_value = @grid[row][col]
+    p "row_index: #{row}, col_index: #{col}"
+    p "position_value: #{pos_value}"
     if pos_value == "O"
        @grid[row][col] = new_value
     elsif pos_value != "O"
