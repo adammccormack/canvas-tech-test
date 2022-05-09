@@ -1,3 +1,4 @@
+require 'byebug'
 
 x = 5
 y = 6
@@ -10,24 +11,16 @@ numbers = (1..size).map {|i| i
 @grid = numbers.each_slice(x).to_a
 
 
-   # Convert to white
-   white = numbers.map {|i| i = 'O'}
-  
-   @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+# Convert to white
+white = numbers.map {|i| i = 'O'}
+@grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
 
 # to get move_left working in IRB, you need to run all teh above code first, to create a grid
 # then you need to pass that grid into the instance variable grid method below
 # then move_left can call @grid when calculating the values
 
-  @test_grid = [["O", "O", "X", "O", "O"],
-  ["O", "X", "O", "X", "O"],
-  ["X", "O", "O", "O", "X"],
-  ["O", "O", "O", "O", "O"],
-  ["O", "O", "O", "O", "O"],
-  ["O", "O", "O", "O", "O"]]
-
 def move_left(row, col)
-  while col > -1
+  while col >= 0
     row = row
     col = col-1
     pos_value = @grid[row][col]
@@ -91,7 +84,6 @@ def fill_down(row, col, grid = '@grid')
   end
 end
 
-
 def move_right(row, col) 
   while col >= 0
     row = row
@@ -125,9 +117,11 @@ def move_down(row, col)
     pos_value = @grid[row][col]
     p "row_index: #{row}, col_index: #{col}"
     p "position_value: #{pos_value}"
-    if pos_value != "O"
+    if row >= @grid.length-1
       break
-     end
+    elsif pos_value != "O"
+    else
+    end
   end
 end
   
