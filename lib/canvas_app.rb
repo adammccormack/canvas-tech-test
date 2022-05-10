@@ -19,8 +19,7 @@ class CanvasApp
 
 # C - Clears the canvas, setting all pixels to white (O).
   def clear
-    numbers = (1..@size).map {|i| i
-    }
+    numbers = (1..@size).map {|i| i }
     #convert to numbers
     @grid = numbers.each_slice(@col).to_a
     
