@@ -18,7 +18,7 @@ require 'byebug'
     @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
   end
 
-# W F   
+# W F
 # Method 1, grab a snapshot of current canvas data, reset it, then add the saved data onto the new canvas
 # Method 2, add literal extra spaces to the existing canvas
 # limitations are that you won't be able to scale by halves or .5.
@@ -36,6 +36,7 @@ require 'byebug'
 
   end
 
+  # S
   def show
     @grid
   end
@@ -170,8 +171,8 @@ require 'byebug'
         row = row
         col1 = col1+1
         pos_value = @grid[row][col1]
-        p "row_index: #{row}, col_index: #{col1}"
-        p "position_value: #{pos_value}"
+        # p "row_index: #{row}, col_index: #{col1}"
+        # p "position_value: #{pos_value}"
         if col1 == col2
           @grid[row][col1] = new_value
           break
@@ -251,5 +252,20 @@ require 'byebug'
         break
       else
       end
+    end
+  end
+
+  # ?
+  # Add program help here
+  def ?
+    'Hello this is where all the help WILL be : )'
+  end
+
+  # X 
+  def exit
+    begin
+      exit
+    rescue SystemExit
+      p 123
     end
   end
