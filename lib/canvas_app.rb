@@ -4,8 +4,8 @@ class CanvasApp
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
 # C - Clears the canvas, setting all pixels to white (O).
   def create(row = 6, col = 5)
-    row = 6
-    @col = 5
+    row = row
+    @col = col
 
     @size = row*@col
     
@@ -62,8 +62,8 @@ class CanvasApp
 # F X Y C
 # Change this so it just fills over everything
   def fill(row,col)
-    move_right(row,col)
-    move_left(row,col-1)
+    move_right_fill(row,col)
+    move_left_fill(row,col-1)
   end
 
   def move_left_fill(row, col)
@@ -100,6 +100,22 @@ class CanvasApp
       end
     end
   end
+
+  # To draw a square
+  canvas.vert_draw(9,2,3,'X')
+  canvas.horiz_draw(3,9,2,'X')
+  canvas.vert_draw(2,9,9,'X')
+  canvas.horiz_draw(3,9,9,'X')
+
+  # To draw a irregular shape
+  canvas.vert_draw(9,2,3,'X')
+  canvas.horiz_draw(3,5,2,'X')
+  canvas.vert_draw(2,5,5,'X')
+  canvas.horiz_draw(5,10,5,'X')
+  canvas.vert_draw(5,9,10,'X')
+  canvas.horiz_draw(3,10,9,'X')
+
+  
 
   # V X Y1 Y2 C
   # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
