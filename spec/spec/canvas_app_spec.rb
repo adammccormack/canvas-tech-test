@@ -4,13 +4,13 @@ describe CanvasApp do
 
   it { is_expected.to respond_to(:create).with(2).argument }
 
-  it { is_expected.to respond_to(:size).with(1).argument }
+  it { is_expected.to respond_to(:size) }
 
   describe '#create' do
     it 'creates a new canvas with the two arguments given' do
       canvas = CanvasApp.new
 
-      expect(canvas.create(5,6)).to be_truthy
+      expect(canvas.create(10,10)).to be_truthy
     end
   end
 
@@ -18,9 +18,9 @@ describe CanvasApp do
     it 'returns the size of the canvas' do
       canvas = CanvasApp.new
 
-      new_canvas = canvas.create(5,6)
+      canvas.create(10,10)
 
-      expect(canvas.size(new_canvas)).to eq(30)
+      expect(canvas.size).to eq(100)
     end
   end
 end
