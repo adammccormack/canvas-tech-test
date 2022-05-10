@@ -28,14 +28,25 @@ describe CanvasApp do
 
   describe '#clear' do
     it 'clears the canvas' do
-      canvas1 = CanvasApp.new
-      canvas1.create(2,2)
+      canvas = CanvasApp.new
+      canvas.create(2,2)
       test_array = [["O", "O"], ["O", "O"]]
 
-      canvas1.fill(0,0)
-      canvas1.clear
+      canvas.fill(0,0)
+      canvas.clear
       
-      expect(canvas1.show).to match_array(test_array)
+      expect(canvas.show).to match_array(test_array)
+    end
+  end
+
+  describe '#scale' do
+    it 'scales the canvas up or down by percentage input' do
+      canvas = CanvasApp.new
+      canvas.create(2,2)
+
+      canvas.scale(200)
+
+      expect(canvas.size).to eq(4)
     end
   end
 
