@@ -1,21 +1,41 @@
 require 'byebug'
+
+
+
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
 # C - Clears the canvas, setting all pixels to white (O).
+  def reset(row = 6, col = 5)
+    row = 6
+    @col = 5
 
-  def reset(y = 6, x = 5)
-    x = 5
-    y = 6
+    @size = row*@col
     
-    size = x*y
-    
-    numbers = (1..size).map {|i| i
+    numbers = (1..@size).map {|i| i
     }
     #convert to numbers
-    @grid = numbers.each_slice(x).to_a
+    @grid = numbers.each_slice(@col).to_a
     
     # Convert to white
     white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(x).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+    @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+  end
+
+# W F   
+# Method 1, grab a snapshot of current canvas data, reset it, then add the saved data onto the new canvas
+# Method 2, add literal extra spaces to the existing canvas
+# limitations are that you won't be able to scale by halves or .5.
+  def scale(percentage = 0 )
+
+    new_size = @size*percentage/100
+
+    numbers = (1..new_size).map {|i| i
+    }
+
+    @grid = numbers.each_slice(@col).to_a
+
+    white = numbers.map {|i| i = 'O'}
+    @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+
   end
 
 # L X Y C
@@ -46,7 +66,6 @@ require 'byebug'
     end
   end
   
-  
   def fill_up(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
@@ -73,8 +92,7 @@ require 'byebug'
     grid = grid
     new_value = "N"
     @grid[row1][col] = new_value
-    # fill to row2
-    # if row2 > row1, fill_down to row2
+    #draw_down
     if row1 <= row2
       while row1 >= 0 && row1 < @grid.length-1
         row1 = row1+1
@@ -95,7 +113,8 @@ require 'byebug'
         else
         end
       end
-
+    
+    # draw_up
     elsif row1 >= row2
       # if row2 < row1, fill_up to row2
       while row1 > 0
@@ -118,9 +137,9 @@ require 'byebug'
     else
     end
   end
+
+
   
-  # HX1 X2 YC
-  # need to adjust to only fill X1 to X2 going horizontally along Y.
   def fill_down(row, col, grid = '@grid')
     grid = grid
     new_value = "N"
