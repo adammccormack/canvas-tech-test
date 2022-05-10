@@ -143,4 +143,23 @@ describe CanvasApp do
       expect(canvas.show).to match_array(test_array)
     end
   end
+
+  describe '#vert_draw' do
+    context 'when row1 <= row2' do
+      it 'fills the column between two points' do
+        canvas = CanvasApp.new
+        canvas.create(5,5)
+        test_array = 
+        [["O", "O", "O", "O", "O"],                             
+        ["O", "O", "X", "O", "O"],                             
+        ["O", "O", "X", "O", "O"],                             
+        ["O", "O", "X", "O", "O"],                             
+        ["O", "O", "O", "O", "O"]]
+
+        canvas.vert_draw(1,3,2,'X')
+
+        expect(canvas.show).to match_array(test_array)
+      end
+    end
+  end
 end
