@@ -38,6 +38,9 @@ require 'byebug'
 
   end
 
+  def show
+    @grid
+  end
 # L X Y C
 
   def colour_pixel(row, col, colour)
