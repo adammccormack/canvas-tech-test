@@ -50,6 +50,31 @@ describe CanvasApp do
     end
   end
 
+  describe '#size' do
+    it 'returns the current size of the canvas' do
+      canvas = CanvasApp.new
+      canvas.create(2,2)
+
+      expect(canvas.size).to eq(4)
+    end
+  end
+
+  describe '#show' do
+    it 'returns the grid array layout of the canvas' do
+      canvas = CanvasApp.new
+      canvas.create(5,5)
+
+      test_array = 
+      [["O", "O", "O", "O", "O"],                             
+      ["O", "O", "O", "O", "O"],                             
+      ["O", "O", "O", "O", "O"],                             
+      ["O", "O", "O", "O", "O"],                             
+      ["O", "O", "O", "O", "O"]]
+
+      expect(canvas.show).to match_array(test_array)
+    end
+  end
+
   # created_canvas1 = canvas1.create(2,2)
   # canvas2 = CanvasApp.new
   # canvas2.create(2,2)
