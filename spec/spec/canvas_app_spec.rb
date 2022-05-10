@@ -75,7 +75,7 @@ describe CanvasApp do
     end
   end
 
-  describe 'colour_pixel' do
+  describe '#colour_pixel' do
     it 'colours a single specified position on canvas' do
       canvas = CanvasApp.new
       canvas.create(2,2)
@@ -88,8 +88,17 @@ describe CanvasApp do
     end
   end
 
-  # created_canvas1 = canvas1.create(2,2)
-  # canvas2 = CanvasApp.new
-  # canvas2.create(2,2)
+  describe '#fill' do
+    context 'when canvas is one colour' do
+      it 'fills the whole canvas' do
+        canvas = CanvasApp.new
+        canvas.create(2,2)
+        test_array = [["N", "N"], ["N", "N"]]
+      
+        canvas.fill(0,0)
 
+        expect(canvas.show).to match_array(test_array)
+      end
+    end
+  end
 end
