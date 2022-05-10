@@ -9,8 +9,7 @@ class CanvasApp
 
     @size = row*@col
     
-    numbers = (1..@size).map {|i| i
-    }
+    numbers = (1..@size).map {|i| i}
     #convert to numbers
     @grid = numbers.each_slice(@col).to_a
     
@@ -35,7 +34,7 @@ class CanvasApp
   # Method 1, grab a snapshot of current canvas data, reset it, then add the saved data onto the new canvas.
   # Method 2, add literal extra spaces to the existing canvas.
   # limitations are that you won't be able to scale by halves or .5.
-  def scale(percentage = 0 )
+  def scale(percentage = 0)
 
     new_size = @size*percentage/100
 
@@ -61,12 +60,13 @@ class CanvasApp
   end
 
 # F X Y C
+# Change this so it just fills over everything
   def fill(row,col)
     move_right(row,col)
     move_left(row,col-1)
   end
 
-  def move_left(row, col)
+  def move_left_fill(row, col)
     while col >= 0
       fill_up(row, col, @grid) unless col < 0
       fill_down(row, col, @grid) unless col < 0
@@ -224,7 +224,7 @@ class CanvasApp
     end
   end
 
-  def move_right(row, col) 
+  def move_right_fill(row, col) 
     while col >= 0
       fill_up(row, col, @grid) unless col < 0
       fill_down(row, col, @grid) unless col < 0
@@ -275,12 +275,8 @@ class CanvasApp
   end
 
   # X 
-  def exit
-    begin
-      exit
-    rescue SystemExit
-      p 123
-    end
+  def X
+    exit
   end
 
 end
