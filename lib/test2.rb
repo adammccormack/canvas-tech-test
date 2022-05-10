@@ -1,7 +1,5 @@
 require 'byebug'
 
-
-
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
 # C - Clears the canvas, setting all pixels to white (O).
   def reset(row = 6, col = 5)
@@ -82,7 +80,7 @@ require 'byebug'
       if pos_value == "O"
          @grid[row][col] = new_value
       elsif pos_value != "O"
-        next
+        break
         # or break
       else
       end
@@ -141,6 +139,53 @@ require 'byebug'
     end
   end
 
+
+  # H X1 X2 Y C
+  # Horizontal draw
+  def horiz_draw(col1, col2, row, colour = '', grid = '@grid')
+    grid = grid
+    new_value = "N"
+    @grid[row][col1] = new_value
+    # draw left
+    if col1 >= col2
+      while col1 >= 0
+        row = row
+        col1 = col1-1
+        pos_value = @grid[row][col1]
+        # p "row_index: #{row}, col_index: #{col}"
+        # p "position_value: #{pos_value}"
+        if col1 == col2
+          @grid[row][col1] = new_value
+          break
+        elsif pos_value == "O"
+           @grid[row][col1] = new_value
+        elsif pos_value != "O"
+          break
+        else
+        end
+      end
+    # draw right
+    elsif col1 <= col2
+      while col1 >= 0
+        row = row
+        col1 = col1+1
+        pos_value = @grid[row][col1]
+        p "row_index: #{row}, col_index: #{col1}"
+        p "position_value: #{pos_value}"
+        if col1 == col2
+          @grid[row][col1] = new_value
+          break
+        elsif pos_value == "O"
+          @grid[row][col1] = new_value
+        elsif pos_value != "O"
+          break
+        else
+        end
+      end
+    else
+    end
+  end
+  
 
   
   def fill_down(row, col, grid = '@grid')
