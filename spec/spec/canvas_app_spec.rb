@@ -32,7 +32,7 @@ describe CanvasApp do
       canvas.create(2,2)
       test_array = [["O", "O"], ["O", "O"]]
 
-      canvas.fill(0,0)
+      canvas.fill(0,0,'X')
       canvas.clear
       
       expect(canvas.show).to match_array(test_array)
@@ -93,11 +93,35 @@ describe CanvasApp do
       it 'fills the whole canvas' do
         canvas = CanvasApp.new
         canvas.create(2,2)
-        test_array = [["N", "N"], ["N", "N"]]
+        test_array = [["X", "X"], ["X", "X"]]
       
-        canvas.fill(0,0)
+        canvas.fill(0,0,'X')
 
         expect(canvas.show).to match_array(test_array)
+      end
+    end
+
+    context 'when filling inside a shape' do
+      it 'fills the shape' do
+        canvas = CanvasApp.new
+        canvas.create(6,6)
+        test_array2 = 
+        [["O", "X", "X", "X", "X", "O"],                        
+        ["O", "X", "X", "X", "X", "O"],                        
+        ["O", "X", "X", "X", "X", "O"],                        
+        ["O", "X", "X", "X", "X", "O"],                        
+        ["O", "X", "X", "X", "X", "O"],                        
+        ["O", "X", "X", "X", "X", "O"]]
+
+
+        canvas.vert_draw(0,5,1,'X')
+        canvas.vert_draw(0,5,4,'X')
+        canvas.horiz_draw(1,4,0,'X')
+        canvas.horiz_draw(1,4,5,'X')
+        canvas.fill(3,2,'X')
+
+        
+        expect(canvas.show).to match_array(test_array2)
       end
     end
   end

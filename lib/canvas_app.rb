@@ -64,9 +64,9 @@ class CanvasApp
 
 # F X Y C
 # Change this so it just fills over everything
-  def fill(row,col)
+  def fill(row, col, colour)
     move_right_fill(row,col)
-    move_left_fill(row,col-1)
+    move_left_fill(row,col)
   end
 
   def move_left_fill(row, col)
@@ -86,7 +86,7 @@ class CanvasApp
   
   def fill_up(row, col, grid = '@grid')
     grid = grid
-    new_value = "N"
+    new_value = "X"
     @grid[row][col] = new_value
     while row > 0
       row = row-1
@@ -104,27 +104,11 @@ class CanvasApp
     end
   end
 
-  # To draw a square
-  # canvas.vert_draw(9,2,3,'X')
-  # canvas.horiz_draw(3,9,2,'X')
-  # canvas.vert_draw(2,9,9,'X')
-  # canvas.horiz_draw(3,9,9,'X')
-
-  # # To draw a irregular shape
-  # canvas.vert_draw(9,2,3,'X')
-  # canvas.horiz_draw(3,5,2,'X')
-  # canvas.vert_draw(2,5,5,'X')
-  # canvas.horiz_draw(5,10,5,'X')
-  # canvas.vert_draw(5,9,10,'X')
-  # canvas.horiz_draw(3,10,9,'X')
-
-
-
   # V X Y1 Y2 C
   # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
   def vert_draw(row1, row2, col, colour = '', grid = '@grid')
     grid = grid
-    new_value = "N"
+    new_value = "X"
     @grid[row1][col] = new_value
     #draw_down
     if row1 <= row2
@@ -172,12 +156,17 @@ class CanvasApp
     end
   end
 
+  # test square
+  # canvas.vert_draw(0,5,1,'X')
+  # canvas.vert_draw(0,5,4,'X')
+  # canvas.horiz_draw(1,4,0,'X')
+  # canvas.horiz_draw(1,4,5,'X')
 
   # H X1 X2 Y C
   # Horizontal draw
   def horiz_draw(col1, col2, row, colour = '', grid = '@grid')
     grid = grid
-    new_value = "N"
+    new_value = "X"
     @grid[row][col1] = new_value
     # draw left
     if col1 >= col2
@@ -219,11 +208,10 @@ class CanvasApp
     end
   end
   
-
   
   def fill_down(row, col, grid = '@grid')
     grid = grid
-    new_value = "N"
+    new_value = "X"
     @grid[row][col] = new_value
     while row >= 0 && row < @grid.length-1
       row = row+1
