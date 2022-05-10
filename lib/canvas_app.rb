@@ -270,7 +270,7 @@ class CanvasApp
 
   # ?
   # Add program help here
-  def ?
+  def help
     'Hello this is where all the help WILL be : )'
   end
 

@@ -268,7 +268,7 @@ require 'byebug'
 
   # ?
   # Add program help here
-  def info
+  def help
     'Hello this is where all the help WILL be : )'
   end
 
