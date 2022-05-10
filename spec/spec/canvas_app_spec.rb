@@ -125,4 +125,22 @@ describe CanvasApp do
       end
     end
   end
+
+  describe '#fill_up' do
+    it 'fills vertically to end of grid' do
+      canvas = CanvasApp.new
+      canvas.create(5,5)
+      test_array = 
+      [["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"]] 
+      
+
+      canvas.fill_up(4,2,'X')
+
+      expect(canvas.show).to match_array(test_array)
+    end
+  end
 end
