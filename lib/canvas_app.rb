@@ -60,47 +60,18 @@ class CanvasApp
     move_left_fill(row, col, colour)
   end
 
-
+  
 # V X Y1 Y2 C
   def vert_paint(row1, row2, col, colour)
-    new_colour = colour
-    @grid[row1][col] = new_colour
-    #draw_down
-    if row1 <= row2
-      while row1 >= 0 && row1 < @grid.length-1
-        row1 += 1
-        original_colour = @grid[row1][col]
-        if row1 == row2
-          @grid[row1][col] = new_colour
-          break
-        elsif original_colour != WHITE
-          break
-        elsif row1 >= @grid.length-1
-          @grid[row1][col] = new_colour
-          break
-        elsif original_colour == WHITE
-            @grid[row1][col] = new_colour
-        else
-        end
-      end
-    
-    # draw_up
-    elsif row1 >= row2
-      # if row2 < row1, fill_up to row2
-      while row1 > 0
-        row1 -= 1
-        original_colour = @grid[row1][col]
-        if row1 == row2
-          @grid[row1][col] = new_colour
-          break
-        elsif original_colour == WHITE
-           @grid[row1][col] = new_colour
-        elsif original_colour != WHITE
-          next
-          # or break
-        else
-        end
-      end
+    @v_row1 = row1
+    @v_row2 = row2
+    @v_col = col
+    @new_colour = colour
+    @grid[@v_row1][col] = @new_colour
+    if @v_row1 <= @v_row2
+      paint_down
+    elsif @v_row1 >= @v_row2
+      paint_up
     else
     end
   end
@@ -234,6 +205,42 @@ class CanvasApp
 
   def current_canvas_colour
     @grid[row1][col]
+  end
+
+  def paint_down
+    while @v_row1 >= 0 && @v_row1 < @grid.length-1
+      @v_row1 += 1
+      original_colour = @grid[@v_row1][@v_col]
+      if @v_row1 == @v_row2
+        @grid[@v_row1][@v_col] = @new_colour
+        break
+      elsif original_colour != WHITE
+        break
+      elsif @v_row1 >= @grid.length-1
+        @grid[@v_row1][@v_col] = @new_colour
+        break
+      elsif original_colour == WHITE
+          @grid[@v_row1][@v_col] = @new_colour
+      else
+      end
+    end
+  end
+
+  def paint_up
+    while @v_row1 > 0
+      @v_row1 -= 1
+      original_colour = @grid[@v_row1][@v_col]
+      if @v_row1 == @v_row2
+        @grid[@v_row1][@v_col] = @new_colour
+        break
+      elsif original_colour == WHITE
+         @grid[@v_row1][@v_col] = @new_colour
+      elsif original_colour != WHITE
+        next
+        # or break
+      else
+      end
+    end
   end
 
   def move_left_fill(row, col, colour)
