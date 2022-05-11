@@ -67,10 +67,7 @@ class CanvasApp
     if row1 <= row2
       while row1 >= 0 && row1 < @grid.length-1
         row1 = row1+1
-        col = col
         current_canvas_colour = @grid[row1][col]
-        p "row_index: #{row1}, col_index: #{col}"
-        p "position_value: #{current_canvas_colour}"
         if row1 == row2
           @grid[row1][col] = new_colour
           break
@@ -90,10 +87,8 @@ class CanvasApp
       # if row2 < row1, fill_up to row2
       while row1 > 0
         row1 = row1-1
-        col = col
         current_canvas_colour = @grid[row1][col]
-        p "row_index: #{row1}, col_index: #{col}"
-        p "position_value: #{current_canvas_colour}"
+
         if row1 == row2
           @grid[row1][col] = new_colour
           break
@@ -118,7 +113,6 @@ class CanvasApp
     # draw left
     if col1 >= col2
       while col1 >= 0
-        row = row
         col1 = col1-1
         current_canvas_colour = @grid[row][col1]
         # p "row_index: #{row}, col_index: #{col}"
@@ -136,7 +130,6 @@ class CanvasApp
     # draw right
     elsif col1 <= col2
       while col1 >= 0
-        row = row
         col1 = col1+1
         current_canvas_colour = @grid[row][col1]
         # p "row_index: #{row}, col_index: #{col1}"

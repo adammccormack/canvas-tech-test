@@ -138,7 +138,7 @@ describe CanvasApp do
       ["O", "O", "O", "O", "O"]]
 
       canvas.vert_draw(1,3,2,'X')
-
+      
       expect(canvas.show).to match_array(test_array)
     end
   end
