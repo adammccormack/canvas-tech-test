@@ -79,17 +79,17 @@ class CanvasApp
   
 
   # H X1 X2 Y C
-  # Horizontal draw
+  # Horizontal paint
   def horiz_paint(col1, col2, row, colour)
     @h_col1 = col1
     @h_col2 = col2
     @h_row = row
     @h_new_colour = colour
     @grid[row][@h_col1] = @h_new_colour
-    # draw left
+    # paint left
     if @h_col1 >= @h_col2
       paint_left
-    # draw right
+    # paint right
     elsif @h_col1 <= @h_col2
       paint_right
     else
@@ -99,7 +99,7 @@ class CanvasApp
   # ?
   # Add program help here
   def help
-    'Hello this is where all the help WILL be : )'
+    p'Hello this is where all the help WILL be : )'
     
     'I M N - Create a New Blank Canvas'
     'Action_name: create(row,col)'
@@ -150,8 +150,8 @@ class CanvasApp
     'Description: exits the program : )'
 
     '? - Help'
-    'Action_name: help)'
-    'Description: We\'re here : )'
+    'Action_name: help'
+    'Description: We are right where we should be : )'
   end
 
   # X 

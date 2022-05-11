@@ -120,7 +120,6 @@ describe CanvasApp do
         canvas.horiz_paint(1,4,5,'X')
         canvas.fill(3,2,'X')
 
-        
         expect(canvas.show).to match_array(test_array2)
       end
     end
