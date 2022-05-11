@@ -148,7 +148,6 @@ describe CanvasApp do
       canvas = CanvasApp.new
       canvas.create(5,5)
       
-
       test_array = 
       [["O", "O", "O", "O", "O"],                                                  
       ["O", "O", "O", "O", "O"],                                                  

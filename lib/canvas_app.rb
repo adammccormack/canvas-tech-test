@@ -76,66 +76,25 @@ class CanvasApp
     end
   end
 
-  def paint_left
-    while col1 >= 0
-      col1 -= 1
-      current_canvas_colour = @grid[row][col1]
-      if col1 == col2
-        @grid[row][col1] = new_colour
-        break
-      elsif current_canvas_colour == WHITE
-         @grid[row][col1] = new_colour
-      elsif current_canvas_colour != WHITE
-        break
-      else
-      end
-    end
-  end
+  
 
   # H X1 X2 Y C
   # Horizontal draw
   def horiz_paint(col1, col2, row, colour)
-    new_colour = colour
-    @grid[row][col1] = new_colour
+    @h_col1 = col1
+    @h_col2 = col2
+    @h_row = row
+    @h_new_colour = colour
+    @grid[row][@h_col1] = @h_new_colour
     # draw left
-    if col1 >= col2
+    if @h_col1 >= @h_col2
       paint_left
-      # while col1 >= 0
-      #   col1 -= 1
-      #   current_canvas_colour = @grid[row][col1]
-      #   if col1 == col2
-      #     @grid[row][col1] = new_colour
-      #     break
-      #   elsif current_canvas_colour == WHITE
-      #      @grid[row][col1] = new_colour
-      #   elsif current_canvas_colour != WHITE
-      #     break
-      #   else
-      #   end
-      # end
     # draw right
-    elsif col1 <= col2
-      while col1 >= 0
-        col1 += 1
-        current_canvas_colour = @grid[row][col1]
-        # p "row_index: #{row}, col_index: #{col1}"
-        # p "position_value: #{current_canvas_colour}"
-        if col1 == col2
-          @grid[row][col1] = new_colour
-          break
-        elsif current_canvas_colour == WHITE
-          @grid[row][col1] = new_colour
-        elsif current_canvas_colour != WHITE
-          break
-        else
-        end
-      end
+    elsif @h_col1 <= @h_col2
+      paint_right
     else
     end
   end
-  
-  
-  
 
   # ?
   # Add program help here
@@ -255,6 +214,40 @@ class CanvasApp
       elsif original_colour != WHITE
         next
         # or break
+      else
+      end
+    end
+  end
+
+  def paint_left
+    while col1 >= 0
+      col1 -= 1
+      current_canvas_colour = @grid[row][col1]
+      if col1 == col2
+        @grid[row][col1] = new_colour
+        break
+      elsif current_canvas_colour == WHITE
+         @grid[row][col1] = new_colour
+      elsif current_canvas_colour != WHITE
+        break
+      else
+      end
+    end
+  end
+
+  def paint_right
+    while @h_col1 >= 0
+      @h_col1 += 1
+      current_canvas_colour = @grid[@h_row][@h_col1]
+      # p "@h_row_index: #{@h_row}, col_index: #{@h_col1}"
+      # p "position_value: #{current_canvas_colour}"
+      if @h_col1 == @h_col2
+        @grid[@h_row][@h_col1] = @h_new_colour
+        break
+      elsif current_canvas_colour == WHITE
+        @grid[@h_row][@h_col1] = @h_new_colour
+      elsif current_canvas_colour != WHITE
+        break
       else
       end
     end
