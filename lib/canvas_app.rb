@@ -1,8 +1,8 @@
 require 'byebug'
 
 class CanvasApp
-  COLOUR_WHITE = 'O'
-
+  WHITE = 'O'
+  CANVAS_BORDER = 0
   attr_reader :row, :col, :size, :grid
 
   def initialize
@@ -59,25 +59,26 @@ class CanvasApp
     move_right_fill(row, col, colour)
     move_left_fill(row, col, colour)
   end
+
   
 # V X Y1 Y2 C
-  def vert_draw(row1, row2, col, colour = 'X')
+  def vert_paint(row1, row2, col, colour)
     new_colour = colour
     @grid[row1][col] = new_colour
     #draw_down
     if row1 <= row2
       while row1 >= 0 && row1 < @grid.length-1
         row1 += 1
-        current_canvas_colour = @grid[row1][col]
+        original_colour = @grid[row1][col]
         if row1 == row2
           @grid[row1][col] = new_colour
           break
-        elsif current_canvas_colour != COLOUR_WHITE
+        elsif original_colour != WHITE
           break
         elsif row1 >= @grid.length-1
           @grid[row1][col] = new_colour
           break
-        elsif current_canvas_colour == COLOUR_WHITE
+        elsif original_colour == WHITE
             @grid[row1][col] = new_colour
         else
         end
@@ -88,14 +89,13 @@ class CanvasApp
       # if row2 < row1, fill_up to row2
       while row1 > 0
         row1 -= 1
-        current_canvas_colour = @grid[row1][col]
-
+        original_colour = @grid[row1][col]
         if row1 == row2
           @grid[row1][col] = new_colour
           break
-        elsif current_canvas_colour == COLOUR_WHITE
+        elsif original_colour == WHITE
            @grid[row1][col] = new_colour
-        elsif current_canvas_colour != COLOUR_WHITE
+        elsif original_colour != WHITE
           next
           # or break
         else
@@ -107,22 +107,20 @@ class CanvasApp
 
   # H X1 X2 Y C
   # Horizontal draw
-  def horiz_draw(col1, col2, row, colour = 'X')
+  def horiz_draw(col1, col2, row, colour)
     new_colour = colour
     @grid[row][col1] = new_colour
     # draw left
     if col1 >= col2
       while col1 >= 0
-        col1 = col1-1
+        col1 -= 1
         current_canvas_colour = @grid[row][col1]
-        # p "row_index: #{row}, col_index: #{col}"
-        # p "position_value: #{current_canvas_colour}"
         if col1 == col2
           @grid[row][col1] = new_colour
           break
-        elsif current_canvas_colour == COLOUR_WHITE
+        elsif current_canvas_colour == WHITE
            @grid[row][col1] = new_colour
-        elsif current_canvas_colour != COLOUR_WHITE
+        elsif current_canvas_colour != WHITE
           break
         else
         end
@@ -130,16 +128,16 @@ class CanvasApp
     # draw right
     elsif col1 <= col2
       while col1 >= 0
-        col1 = col1+1
+        col1 += 1
         current_canvas_colour = @grid[row][col1]
         # p "row_index: #{row}, col_index: #{col1}"
         # p "position_value: #{current_canvas_colour}"
         if col1 == col2
           @grid[row][col1] = new_colour
           break
-        elsif current_canvas_colour == COLOUR_WHITE
+        elsif current_canvas_colour == WHITE
           @grid[row][col1] = new_colour
-        elsif current_canvas_colour != COLOUR_WHITE
+        elsif current_canvas_colour != WHITE
           break
         else
         end
@@ -187,7 +185,7 @@ class CanvasApp
      width(col) and colour(colour), after this hit enter to fill.'
     
     'V X Y1 Y2 C - Paint a Vertical Line'
-    'Action_name: vert_draw(row1, row2, color, colour)'
+    'Action_name: vert_paint(row1, row2, color, colour)'
     'Description: Paints a line between two given vertical points on, given by 
      height(row1) & (row2), and the horizontal location given by (col) and colour
      given by (colour), after entering the desired points and color, hit enter to
@@ -247,7 +245,7 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       # p "row_index: #{row}, col_index: #{col}"
       # p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour != COLOUR_WHITE
+      if current_canvas_colour != WHITE
        break
       end
     end
@@ -262,7 +260,7 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour != COLOUR_WHITE
+      if current_canvas_colour != WHITE
        break
       end
     end
@@ -277,9 +275,9 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour == COLOUR_WHITE
+      if current_canvas_colour == WHITE
          @grid[row][col] = new_colour
-      elsif current_canvas_colour != COLOUR_WHITE
+      elsif current_canvas_colour != WHITE
         break
         # or break
       else
@@ -296,12 +294,12 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour != COLOUR_WHITE
+      if current_canvas_colour != WHITE
         break
       elsif row >= @grid.length-1
         @grid[row][col] = new_colour
         break
-      elsif current_canvas_colour == COLOUR_WHITE
+      elsif current_canvas_colour == WHITE
           @grid[row][col] = new_colour
       else
       end
@@ -315,7 +313,7 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour != COLOUR_WHITE
+      if current_canvas_colour != WHITE
         break
       else
       end
@@ -329,7 +327,7 @@ class CanvasApp
       current_canvas_colour = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{current_canvas_colour}"
-      if current_canvas_colour != COLOUR_WHITE
+      if current_canvas_colour != WHITE
         break
       elsif row >= @grid.length-1
         break
