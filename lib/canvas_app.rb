@@ -49,16 +49,17 @@ class CanvasApp
 
 # L X Y C
   def colour_pixel(row, col, colour)
-    new_colour = colour
-    @grid[row][col] = new_colour
+    new_value = colour
+    @grid[row][col] = new_value
   end
 
 # F X Y C
 # Change this so it just fills over everything
   def fill(row, col, colour)
-    move_right_fill(row,col)
-    move_left_fill(row,col)
+    move_right_fill(row, col, colour)
+    move_left_fill(row, col, colour)
   end
+
 
   # V X Y1 Y2 C
   # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
@@ -244,10 +245,10 @@ class CanvasApp
      }
   end
 
-  def move_left_fill(row, col)
+  def move_left_fill(row, col, colour)
     while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
+      fill_up(row, col, colour) unless col < 0
+      fill_down(row, col, colour) unless col < 0
       row = row
       col = col-1
       pos_value = @grid[row][col]
@@ -259,10 +260,10 @@ class CanvasApp
     end
   end
 
-  def move_right_fill(row, col) 
+  def move_right_fill(row, col, colour) 
     while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
+      fill_up(row, col, colour) unless col < 0
+      fill_down(row, col, colour) unless col < 0
       row = row
       col = col+1
       pos_value = @grid[row][col]
@@ -274,10 +275,9 @@ class CanvasApp
     end
   end 
 
-  def fill_up(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
+  def fill_up(row, col, colour)
+    new_colour = colour
+    @grid[row][col] = new_colour
     while row > 0
       row = row-1
       col = col
@@ -285,7 +285,7 @@ class CanvasApp
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{pos_value}"
       if pos_value == "O"
-         @grid[row][col] = new_value
+         @grid[row][col] = new_colour
       elsif pos_value != "O"
         break
         # or break
@@ -294,10 +294,9 @@ class CanvasApp
     end
   end
 
-  def fill_down(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
+  def fill_down(row, col, colour)
+    new_colour = colour
+    @grid[row][col] = new_colour
     while row >= 0 && row < @grid.length-1
       row = row+1
       col = col
@@ -307,10 +306,10 @@ class CanvasApp
       if pos_value != "O"
         break
       elsif row >= @grid.length-1
-        @grid[row][col] = new_value
+        @grid[row][col] = new_colour
         break
       elsif pos_value == "O"
-          @grid[row][col] = new_value
+          @grid[row][col] = new_colour
       else
       end
     end
