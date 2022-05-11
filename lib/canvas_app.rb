@@ -1,8 +1,15 @@
 require 'byebug'
 
 class CanvasApp
+
+  def initialize
+    @row = 0
+    @col = 0
+  end
+
+
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
-  def create(row = 6, col = 5)
+  def create(row = 250, col = 250)
     row = row
     @col = col
 
@@ -29,9 +36,6 @@ class CanvasApp
   end
 
   # W F
-  # Method 1, grab a snapshot of current canvas data, reset it, then add the saved data onto the new canvas.
-  # Method 2, add literal extra spaces to the existing canvas.
-  # limitations are that you won't be able to scale by halves or .5.
   def scale(percentage = 0)
 
     new_size = @size*percentage/100
@@ -69,40 +73,6 @@ class CanvasApp
     move_left_fill(row,col)
   end
 
-  def move_left_fill(row, col)
-    while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
-      row = row
-      col = col-1
-      pos_value = @grid[row][col]
-      # p "row_index: #{row}, col_index: #{col}"
-      # p "position_value: #{pos_value}"
-      if pos_value != "O"
-       break
-      end
-    end
-  end
-  
-  def fill_up(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
-    while row > 0
-      row = row-1
-      col = col
-      pos_value = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{pos_value}"
-      if pos_value == "O"
-         @grid[row][col] = new_value
-      elsif pos_value != "O"
-        break
-        # or break
-      else
-      end
-    end
-  end
 
   # V X Y1 Y2 C
   # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
@@ -203,72 +173,7 @@ class CanvasApp
   end
   
   
-  def fill_down(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
-    while row >= 0 && row < @grid.length-1
-      row = row+1
-      col = col
-      pos_value = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{pos_value}"
-      if pos_value != "O"
-        break
-      elsif row >= @grid.length-1
-        @grid[row][col] = new_value
-        break
-      elsif pos_value == "O"
-          @grid[row][col] = new_value
-      else
-      end
-    end
-  end
-
-  def move_right_fill(row, col) 
-    while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
-      row = row
-      col = col+1
-      pos_value = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{pos_value}"
-      if pos_value != "O"
-       break
-      end
-    end
-  end 
   
-  def move_up(row, col)
-    while row > 0
-      @row = row-1
-      col = col
-      pos_value = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{pos_value}"
-      if pos_value != "O"
-        break
-      else
-      end
-    end
-  end
-  
-  def move_down(row, col)
-    while row >= 0
-      row = row+1
-      col = col
-      pos_value = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{pos_value}"
-      if pos_value != "O"
-        break
-      elsif row >= @grid.length-1
-        break
-      else
-      end
-    end
-  end
 
   # ?
   # Add program help here
@@ -334,4 +239,107 @@ class CanvasApp
     exit
   end
 
+  private 
+
+  def move_left_fill(row, col)
+    while col >= 0
+      fill_up(row, col, @grid) unless col < 0
+      fill_down(row, col, @grid) unless col < 0
+      row = row
+      col = col-1
+      pos_value = @grid[row][col]
+      # p "row_index: #{row}, col_index: #{col}"
+      # p "position_value: #{pos_value}"
+      if pos_value != "O"
+       break
+      end
+    end
+  end
+
+  def move_right_fill(row, col) 
+    while col >= 0
+      fill_up(row, col, @grid) unless col < 0
+      fill_down(row, col, @grid) unless col < 0
+      row = row
+      col = col+1
+      pos_value = @grid[row][col]
+      p "row_index: #{row}, col_index: #{col}"
+      p "position_value: #{pos_value}"
+      if pos_value != "O"
+       break
+      end
+    end
+  end 
+
+  def fill_up(row, col, grid = '@grid')
+    grid = grid
+    new_value = "X"
+    @grid[row][col] = new_value
+    while row > 0
+      row = row-1
+      col = col
+      pos_value = @grid[row][col]
+      p "row_index: #{row}, col_index: #{col}"
+      p "position_value: #{pos_value}"
+      if pos_value == "O"
+         @grid[row][col] = new_value
+      elsif pos_value != "O"
+        break
+        # or break
+      else
+      end
+    end
+  end
+
+  def fill_down(row, col, grid = '@grid')
+    grid = grid
+    new_value = "X"
+    @grid[row][col] = new_value
+    while row >= 0 && row < @grid.length-1
+      row = row+1
+      col = col
+      pos_value = @grid[row][col]
+      p "row_index: #{row}, col_index: #{col}"
+      p "position_value: #{pos_value}"
+      if pos_value != "O"
+        break
+      elsif row >= @grid.length-1
+        @grid[row][col] = new_value
+        break
+      elsif pos_value == "O"
+          @grid[row][col] = new_value
+      else
+      end
+    end
+  end
+  
+  def move_up(row, col)
+    while row > 0
+      @row = row-1
+      col = col
+      pos_value = @grid[row][col]
+      p "row_index: #{row}, col_index: #{col}"
+      p "position_value: #{pos_value}"
+      if pos_value != "O"
+        break
+      else
+      end
+    end
+  end
+  
+  def move_down(row, col)
+    while row >= 0
+      row = row+1
+      col = col
+      pos_value = @grid[row][col]
+      p "row_index: #{row}, col_index: #{col}"
+      p "position_value: #{pos_value}"
+      if pos_value != "O"
+        break
+      elsif row >= @grid.length-1
+        break
+      else
+      end
+    end
+  end
 end

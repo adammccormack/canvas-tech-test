@@ -126,40 +126,41 @@ describe CanvasApp do
     end
   end
 
-  describe '#fill_up' do
-    it 'fills upwards to end of grid' do
-      canvas = CanvasApp.new
-      canvas.create(5,5)
-      test_array = 
-      [["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"]] 
+
+  # describe '#fill_up' do
+  #   it 'fills upwards to end of grid' do
+  #     canvas = CanvasApp.new
+  #     canvas.create(5,5)
+  #     test_array = 
+  #     [["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"]] 
       
 
-      canvas.fill_up(4,2,'X')
+  #     canvas.fill_up(4,2,'X')
 
-      expect(canvas.show).to match_array(test_array)
-    end
-  end
+  #     expect(canvas.show).to match_array(test_array)
+  #   end
+  # end
 
-  describe '#fill_down' do
-    it 'fills downwards to the of grid' do
-      canvas = CanvasApp.new
-      canvas.create(5,5)
-      test_array = 
-      [["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"]] 
+  # describe '#fill_down' do
+  #   it 'fills downwards to the of grid' do
+  #     canvas = CanvasApp.new
+  #     canvas.create(5,5)
+  #     test_array = 
+  #     [["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"],                             
+  #     ["O", "O", "X", "O", "O"]] 
 
-      canvas.fill_down(0,2,'X')
+  #     canvas.fill_down(0,2,'X')
 
-      expect(canvas.show).to match_array(test_array)
-    end
-  end
+  #     expect(canvas.show).to match_array(test_array)
+  #   end
+  # end
 
   describe '#vert_draw' do
     it 'fills the column between vertical two points' do
