@@ -156,12 +156,6 @@ class CanvasApp
     end
   end
 
-  # test square
-  # canvas.vert_draw(0,5,1,'X')
-  # canvas.vert_draw(0,5,4,'X')
-  # canvas.horiz_draw(1,4,0,'X')
-  # canvas.horiz_draw(1,4,5,'X')
-
   # H X1 X2 Y C
   # Horizontal draw
   def horiz_draw(col1, col2, row, colour = '', grid = '@grid')
@@ -247,15 +241,16 @@ class CanvasApp
   end 
   
   def move_up(row, col)
-    while row >= 0
-      row = row-1
+    while row > 0
+      @row = row-1
       col = col
       pos_value = @grid[row][col]
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{pos_value}"
       if pos_value != "O"
         break
-       end
+      else
+      end
     end
   end
   
@@ -279,6 +274,56 @@ class CanvasApp
   # Add program help here
   def help
     'Hello this is where all the help WILL be : )'
+
+    'Create a New Blank Canvas'
+    'Action_name: create(row,col)'
+    'Description: Use this action to create a new canvas with the desired size
+     given in height(row) and width(col), after this hit enter to create.'
+
+    'Clear the Current Canvas'
+    'Action_name: clear'
+    'Description: Clears all the canvas : )'
+
+    'Scale the Canvas'
+    'Action_name: scale'
+    'Description: Scales the canvas up or down depending on percentage input.'
+
+    'Colour a Pixel'
+    'Action_name: colour_pixel(row, col, colour)'
+    'Description: This action colours a specific area on the canvas, determined by
+     the given height(row), width(col) and colour(colour), after this hit enter 
+     to paint the pixel.'
+
+    'Paint Fill Tool'
+    'Action_name: fill(row,col,colour)'
+    'Description: This action 'fills' the an area/shape that is enclosed by a  
+     one colour. 
+     To use, enter the desired position to start filling given by height(row), 
+     width(col) and colour(colour), after this hit enter to fill.'
+
+     'Paint a Vertical Line'
+     'Action_name: vert_draw(row1, row2, color, colour)'
+     'Description: Paints a line between two given vertical points on, given by 
+      height(row1) & (row2), and the horizontal location given by (col) and colour
+      given by (colour), after entering the desired points and color, hit enter to
+      paint the line.'
+
+     'Paint a Horizontal Line'
+     'Action_name: horiz_draw(col1, col2, row, colour)'
+     'Description: Paints a line between two given horizontal points on, given by 
+      width(col1) & (col2), and the vertical location given by (row) and colour
+      given by (colour), after entering the desired points and color, hit enter to
+      paint the line.'
+
+      'Exit Program'
+      'Action_name: X)'
+      'Description: exits the program : )'
+ 
+
+
+
+
+    
   end
 
   # X 

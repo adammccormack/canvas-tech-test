@@ -113,7 +113,7 @@ describe CanvasApp do
         ["O", "X", "X", "X", "X", "O"],                        
         ["O", "X", "X", "X", "X", "O"]]
 
-
+        # draw the square
         canvas.vert_draw(0,5,1,'X')
         canvas.vert_draw(0,5,4,'X')
         canvas.horiz_draw(1,4,0,'X')
