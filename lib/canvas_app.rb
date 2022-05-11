@@ -60,7 +60,7 @@ class CanvasApp
     move_left_fill(row, col, colour)
   end
 
-  
+
 # V X Y1 Y2 C
   def vert_paint(row1, row2, col, colour)
     new_colour = colour
