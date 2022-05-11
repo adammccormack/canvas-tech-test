@@ -13,53 +13,39 @@ class CanvasApp
 
 
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
+  # convert @size to array
+  # convert numbers_array to white i.e. 'O'
   def create(row = 6, col = 6)
     @row = row
     @col = col
     @size = row*col
-    #convert to numbers
-    numbers = (1..@size).map {|i| i}
-    @grid = Array.new(row) { Array.new(col) }
-    # @grid = numbers.each_slice(@col).to_a
-    # Convert canvas to white
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(col).to_a
+    numbers_array
+    white_array
+    convert_to_grid
   end
 
 # C - Clears the canvas, setting all pixels to white (O).
   def clear
-    numbers = (1..@size).map {|i| i }
-    #convert to numbers
-    @grid = numbers.each_slice(@col).to_a
-    
-    # Convert to white
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a
+    numbers_array
+    convert_to_grid
+    white_array
+    convert_to_grid
   end
 
   # W F
   def scale(percentage = 0)
     new_size = @size*percentage/100
-
-    numbers = (1..new_size).map {|i| i
-    }
-
-    @grid = numbers.each_slice(@col).to_a
-
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
-  end
-
-  def size
-    @size
+    @numbers_array = (1..new_size).map {|i| i}
+    white_array
+    convert_to_grid
   end
 
   # S
+  # presents grid without arrays showing
   def show
-    @grid.each { |r|
-      puts r.each { |p| p }.join(" ")
-      }
+    present_grid
   end
+
 
 # L X Y C
   def colour_pixel(row, col, colour)
@@ -70,8 +56,8 @@ class CanvasApp
 # F X Y C
 # Change this so it just fills over everything
   def fill(row, col, colour)
-    move_right_fill(row,col)
-    move_left_fill(row,col)
+    move_right_fill(row, col, colour)
+    move_left_fill(row, col, colour)
   end
 
 
@@ -241,10 +227,28 @@ class CanvasApp
 
   private 
 
-  def move_left_fill(row, col)
+  def numbers_array
+    @numbers_array = (1..@size).map {|i| i}
+  end
+
+  def white_array
+    @white = @numbers_array.map {|i| i = 'O'}
+  end
+
+  def convert_to_grid
+    @grid = white_array.each_slice(col).to_a
+  end
+
+  def present_grid
+    @grid.each { |r|
+      puts r.each { |p| p }.join(" ")
+     }
+  end
+
+  def move_left_fill(row, col, colour)
     while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
+      fill_up(row, col, colour) unless col < 0
+      fill_down(row, col, colour) unless col < 0
       row = row
       col = col-1
       pos_value = @grid[row][col]
@@ -256,10 +260,10 @@ class CanvasApp
     end
   end
 
-  def move_right_fill(row, col) 
+  def move_right_fill(row, col, colour) 
     while col >= 0
-      fill_up(row, col, @grid) unless col < 0
-      fill_down(row, col, @grid) unless col < 0
+      fill_up(row, col, colour) unless col < 0
+      fill_down(row, col, colour) unless col < 0
       row = row
       col = col+1
       pos_value = @grid[row][col]
@@ -271,10 +275,9 @@ class CanvasApp
     end
   end 
 
-  def fill_up(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
+  def fill_up(row, col, colour)
+    new_colour = colour
+    @grid[row][col] = new_colour
     while row > 0
       row = row-1
       col = col
@@ -282,7 +285,7 @@ class CanvasApp
       p "row_index: #{row}, col_index: #{col}"
       p "position_value: #{pos_value}"
       if pos_value == "O"
-         @grid[row][col] = new_value
+         @grid[row][col] = new_colour
       elsif pos_value != "O"
         break
         # or break
@@ -291,10 +294,9 @@ class CanvasApp
     end
   end
 
-  def fill_down(row, col, grid = '@grid')
-    grid = grid
-    new_value = "X"
-    @grid[row][col] = new_value
+  def fill_down(row, col, colour)
+    new_colour = colour
+    @grid[row][col] = new_colour
     while row >= 0 && row < @grid.length-1
       row = row+1
       col = col
@@ -304,10 +306,10 @@ class CanvasApp
       if pos_value != "O"
         break
       elsif row >= @grid.length-1
-        @grid[row][col] = new_value
+        @grid[row][col] = new_colour
         break
       elsif pos_value == "O"
-          @grid[row][col] = new_value
+          @grid[row][col] = new_colour
       else
       end
     end
