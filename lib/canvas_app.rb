@@ -2,26 +2,28 @@ require 'byebug'
 
 class CanvasApp
 
+  attr_reader :row, :col, :size, :grid
+
   def initialize
     @row = 0
     @col = 0
+    @size = 0
+    @grid = []
   end
 
 
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
-  def create(row = 250, col = 250)
-    row = row
+  def create(row = 6, col = 6)
+    @row = row
     @col = col
-
-    @size = row*@col
-    
-    numbers = (1..@size).map {|i| i}
+    @size = row*col
     #convert to numbers
-    @grid = numbers.each_slice(@col).to_a
-    
-    # Convert to white
+    numbers = (1..@size).map {|i| i}
+    @grid = Array.new(row) { Array.new(col) }
+    # @grid = numbers.each_slice(@col).to_a
+    # Convert canvas to white
     white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+    @grid = white.each_slice(col).to_a
   end
 
 # C - Clears the canvas, setting all pixels to white (O).
@@ -37,7 +39,6 @@ class CanvasApp
 
   # W F
   def scale(percentage = 0)
-
     new_size = @size*percentage/100
 
     numbers = (1..new_size).map {|i| i
@@ -47,7 +48,6 @@ class CanvasApp
 
     white = numbers.map {|i| i = 'O'}
     @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
-
   end
 
   def size
@@ -56,9 +56,10 @@ class CanvasApp
 
   # S
   def show
-    @grid
+    @grid.each { |r|
+      puts r.each { |p| p }.join(" ")
+      }
   end
-
 
 # L X Y C
   def colour_pixel(row, col, colour)
@@ -179,57 +180,56 @@ class CanvasApp
   # Add program help here
   def help
     'Hello this is where all the help WILL be : )'
-    # I M N
-    'Create a New Blank Canvas'
+    
+    'I M N - Create a New Blank Canvas'
     'Action_name: create(row,col)'
     'Description: Use this action to create a new canvas with the desired size
      given in height(row) and width(col), after this hit enter to create.'
-    # C
-    'Clear the Current Canvas'
+    
+    'C - Clear the Current Canvas'
     'Action_name: clear'
     'Description: Clears all the canvas : )'
-    # W F
-    'Scale the Canvas'
+    
+    'W F - Scale the Canvas'
     'Action_name: scale'
     'Description: Scales the canvas up or down depending on percentage input.'
-    # S
-    'Show the Canvas'
+  
+    'S - Show the Canvas'
     'Action_name: show'
     'Description: Shows the canvas and its current state.'
-    # L X Y C
-    'Colour a Pixel'  
+    
+    'L X Y C - Colour a Pixel'  
     'Action_name: colour_pixel(row, col, colour)'
     'Description: This action colours a specific area on the canvas, determined by
      the given height(row), width(col) and colour(colour), after this hit enter 
      to paint the pixel.'
-    # F X Y C
-    'Paint Fill Tool'
+    
+    'F X Y C - Paint Fill'
     'Action_name: fill(row,col,colour)'
     'Description: This action fills an area/shape that is enclosed by a  
      one colour. 
      To use, enter the desired position to start filling given by height(row), 
      width(col) and colour(colour), after this hit enter to fill.'
-    # V X Y1 Y2 C
-     'Paint a Vertical Line'
-     'Action_name: vert_draw(row1, row2, color, colour)'
-     'Description: Paints a line between two given vertical points on, given by 
-      height(row1) & (row2), and the horizontal location given by (col) and colour
-      given by (colour), after entering the desired points and color, hit enter to
-      paint the line.'
-    # H X1 X2 Y C
-     'Paint a Horizontal Line'
-     'Action_name: horiz_draw(col1, col2, row, colour)'
-     'Description: Paints a line between two given horizontal points on, given by 
-      width(col1) & (col2), and the vertical location given by (row) and colour
-      given by (colour), after entering the desired points and color, hit enter to
-      paint the line.'
-    # X
-      'Exit Program'
-      'Action_name: X)'
-      'Description: exits the program : )'
+    
+    'V X Y1 Y2 C - Paint a Vertical Line'
+    'Action_name: vert_draw(row1, row2, color, colour)'
+    'Description: Paints a line between two given vertical points on, given by 
+     height(row1) & (row2), and the horizontal location given by (col) and colour
+     given by (colour), after entering the desired points and color, hit enter to
+     paint the line.'
 
-    # ?
-    'Help'
+    'H X1 X2 Y C - Paint a Horizontal Line
+     Action_name: horiz_draw(col1, col2, row, colour)
+     Description: Paints a line between two given horizontal points on, given by 
+     width(col1) & (col2), and the vertical location given by (row) and colour
+     given by (colour), after entering the desired points and color, hit enter to
+     paint the line.'
+    
+    'X - Exit Program'
+    'Action_name: X)'
+    'Description: exits the program : )'
+
+    '? - Help'
     'Action_name: help)'
     'Description: We\'re here : )'
   end
