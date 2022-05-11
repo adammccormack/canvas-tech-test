@@ -13,28 +13,23 @@ class CanvasApp
 
 
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
+  # convert @size to array
+  # convert numbers_array to white i.e. 'O'
   def create(row = 6, col = 6)
     @row = row
     @col = col
     @size = row*col
-    #convert to numbers
-    numbers = (1..@size).map {|i| i}
-    @grid = Array.new(row) { Array.new(col) }
-    # @grid = numbers.each_slice(@col).to_a
-    # Convert canvas to white
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(col).to_a
+    numbers_array
+    white_array
+    convert_to_grid
   end
 
 # C - Clears the canvas, setting all pixels to white (O).
   def clear
-    numbers = (1..@size).map {|i| i }
-    #convert to numbers
-    @grid = numbers.each_slice(@col).to_a
-    
-    # Convert to white
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a
+    numbers_array
+    convert_to_grid
+    white_array
+    convert_to_grid
   end
 
   # W F
@@ -45,9 +40,9 @@ class CanvasApp
     }
 
     @grid = numbers.each_slice(@col).to_a
-
+    #convert to white
     white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a # OR grid = Array.new(6) { Array.new(5, ' ') }
+    @grid = white.each_slice(@col).to_a
   end
 
   def size
@@ -240,6 +235,18 @@ class CanvasApp
   end
 
   private 
+
+  def numbers_array
+    @numbers_array = (1..@size).map {|i| i}
+  end
+
+  def white_array
+    @white = @numbers_array.map {|i| i = 'O'}
+  end
+
+  def convert_to_grid
+    @grid = white_array.each_slice(col).to_a
+  end
 
   def move_left_fill(row, col)
     while col >= 0
