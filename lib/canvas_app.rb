@@ -35,31 +35,22 @@ class CanvasApp
   # W F
   def scale(percentage = 0)
     new_size = @size*percentage/100
-
-    numbers = (1..new_size).map {|i| i
-    }
-
-    @grid = numbers.each_slice(@col).to_a
-    #convert to white
-    white = numbers.map {|i| i = 'O'}
-    @grid = white.each_slice(@col).to_a
-  end
-
-  def size
-    @size
+    @numbers_array = (1..new_size).map {|i| i}
+    white_array
+    convert_to_grid
   end
 
   # S
+  # presents grid without arrays showing
   def show
-    @grid.each { |r|
-      puts r.each { |p| p }.join(" ")
-      }
+    present_grid
   end
+
 
 # L X Y C
   def colour_pixel(row, col, colour)
-    new_value = colour
-    @grid[row][col] = new_value
+    new_colour = colour
+    @grid[row][col] = new_colour
   end
 
 # F X Y C
@@ -68,7 +59,6 @@ class CanvasApp
     move_right_fill(row,col)
     move_left_fill(row,col)
   end
-
 
   # V X Y1 Y2 C
   # need to adjust fill_up to only fill between Y1 to Y2 going vertically along X.
@@ -246,6 +236,12 @@ class CanvasApp
 
   def convert_to_grid
     @grid = white_array.each_slice(col).to_a
+  end
+
+  def present_grid
+    @grid.each { |r|
+      puts r.each { |p| p }.join(" ")
+     }
   end
 
   def move_left_fill(row, col)
