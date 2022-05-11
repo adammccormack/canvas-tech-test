@@ -244,7 +244,7 @@ class CanvasApp
        break
       end
     end
-  end
+  end 
   
   def move_up(row, col)
     while row >= 0

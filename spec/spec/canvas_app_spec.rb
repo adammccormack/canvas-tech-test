@@ -127,7 +127,7 @@ describe CanvasApp do
   end
 
   describe '#fill_up' do
-    it 'fills vertically to end of grid' do
+    it 'fills upwards to end of grid' do
       canvas = CanvasApp.new
       canvas.create(5,5)
       test_array = 
@@ -144,22 +144,56 @@ describe CanvasApp do
     end
   end
 
+  describe '#fill_down' do
+    it 'fills downwards to the of grid' do
+      canvas = CanvasApp.new
+      canvas.create(5,5)
+      test_array = 
+      [["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"]] 
+
+      canvas.fill_down(0,2,'X')
+
+      expect(canvas.show).to match_array(test_array)
+    end
+  end
+
   describe '#vert_draw' do
-    context 'when row1 <= row2' do
-      it 'fills the column between two points' do
-        canvas = CanvasApp.new
-        canvas.create(5,5)
-        test_array = 
-        [["O", "O", "O", "O", "O"],                             
-        ["O", "O", "X", "O", "O"],                             
-        ["O", "O", "X", "O", "O"],                             
-        ["O", "O", "X", "O", "O"],                             
-        ["O", "O", "O", "O", "O"]]
+    it 'fills the column between vertical two points' do
+      canvas = CanvasApp.new
+      canvas.create(5,5)
+      test_array = 
+      [["O", "O", "O", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "X", "O", "O"],                             
+      ["O", "O", "O", "O", "O"]]
 
-        canvas.vert_draw(1,3,2,'X')
+      canvas.vert_draw(1,3,2,'X')
 
-        expect(canvas.show).to match_array(test_array)
-      end
+      expect(canvas.show).to match_array(test_array)
+    end
+  end
+
+  describe '#horiz_draw' do
+    it 'fills a canvas line between two horizontal points' do
+      canvas = CanvasApp.new
+      canvas.create(5,5)
+      
+
+      test_array = 
+      [["O", "O", "O", "O", "O"],                                                  
+      ["O", "O", "O", "O", "O"],                                                  
+      ["O", "X", "X", "X", "O"],                                                  
+      ["O", "O", "O", "O", "O"],                                                  
+      ["O", "O", "O", "O", "O"]] 
+
+      canvas.horiz_draw(1,3,2,'X')
+
+      expect(canvas.show).to match_array(test_array)
     end
   end
 end
