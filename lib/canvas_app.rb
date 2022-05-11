@@ -76,26 +76,43 @@ class CanvasApp
     end
   end
 
+  def paint_left
+    while col1 >= 0
+      col1 -= 1
+      current_canvas_colour = @grid[row][col1]
+      if col1 == col2
+        @grid[row][col1] = new_colour
+        break
+      elsif current_canvas_colour == WHITE
+         @grid[row][col1] = new_colour
+      elsif current_canvas_colour != WHITE
+        break
+      else
+      end
+    end
+  end
+
   # H X1 X2 Y C
   # Horizontal draw
-  def horiz_draw(col1, col2, row, colour)
+  def horiz_paint(col1, col2, row, colour)
     new_colour = colour
     @grid[row][col1] = new_colour
     # draw left
     if col1 >= col2
-      while col1 >= 0
-        col1 -= 1
-        current_canvas_colour = @grid[row][col1]
-        if col1 == col2
-          @grid[row][col1] = new_colour
-          break
-        elsif current_canvas_colour == WHITE
-           @grid[row][col1] = new_colour
-        elsif current_canvas_colour != WHITE
-          break
-        else
-        end
-      end
+      paint_left
+      # while col1 >= 0
+      #   col1 -= 1
+      #   current_canvas_colour = @grid[row][col1]
+      #   if col1 == col2
+      #     @grid[row][col1] = new_colour
+      #     break
+      #   elsif current_canvas_colour == WHITE
+      #      @grid[row][col1] = new_colour
+      #   elsif current_canvas_colour != WHITE
+      #     break
+      #   else
+      #   end
+      # end
     # draw right
     elsif col1 <= col2
       while col1 >= 0
