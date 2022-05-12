@@ -15,7 +15,6 @@ class CanvasApp
     @help = help
   end
 
-
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
   # convert @size to array
   # convert numbers_array to white i.e. 'O'
