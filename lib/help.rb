@@ -4,7 +4,7 @@ class Help
   def text
       
     <<~TEXT
-    Hello, please read the instructions below on how to use CanvasApp below : )
+    Hello! Please read the instructions below on how to use CanvasApp below : )
 
     
     I M N - Create a New Blank Canvas
@@ -14,7 +14,7 @@ class Help
     
     C - Clear the Current Canvas
     Action_name: clear
-    Description: Clears all the canvas : )
+    Description: Clears all the canvas back to colour white.
     
     W F - Scale the Canvas
     Action_name: scale

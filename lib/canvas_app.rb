@@ -68,16 +68,14 @@ class CanvasApp
     @v_col = col
     @new_colour = colour
     @grid[@v_row1][col] = @new_colour
-    if @v_row1 <= @v_row2
-      paint_down
-    elsif @v_row1 >= @v_row2
-      paint_up
-    else
-    end
+    begin_paint_v
+    # if @v_row1 <= @v_row2
+    #   paint_down
+    # elsif @v_row1 >= @v_row2
+    #   paint_up
+    # else
+    # end
   end
-
-  
-
 
   # H X1 X2 Y C
   # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
@@ -87,14 +85,7 @@ class CanvasApp
     @h_row = row
     @h_new_colour = colour
     @grid[row][@h_col1] = @h_new_colour
-    # paint left
-    if @h_col1 >= @h_col2
-      paint_left
-    # paint right
-    elsif @h_col1 <= @h_col2
-      paint_right
-    else
-    end
+    begin_paint_h
   end
   # ?
   #Shows in program help
@@ -131,6 +122,24 @@ class CanvasApp
     @grid[row1][col]
   end
 
+  def begin_paint_v
+    if @v_row1 <= @v_row2
+      paint_down
+    elsif @v_row1 >= @v_row2
+      paint_up
+    else
+    end
+  end
+
+  def begin_paint_h
+    if @h_col1 >= @h_col2
+      paint_left
+    elsif @h_col1 <= @h_col2
+      paint_right
+    else
+    end
+  end
+
   def paint_down
     while @v_row1 >= 0 && @v_row1 < @grid.length-1
       @v_row1 += 1
@@ -149,9 +158,6 @@ class CanvasApp
       end
     end
   end
-
-
-
 
   def paint_up
     while @v_row1 > 0
