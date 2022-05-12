@@ -78,6 +78,7 @@ class CanvasApp
 
   
 
+
   # H X1 X2 Y C
   # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
   def horiz_paint(col1, col2, row, colour)
@@ -87,7 +88,7 @@ class CanvasApp
     @h_new_colour = colour
     @grid[row][@h_col1] = @h_new_colour
     # paint left
-    if @h_col1 >= @h_col2 
+    if @h_col1 >= @h_col2
       paint_left
     # paint right
     elsif @h_col1 <= @h_col2
@@ -100,13 +101,13 @@ class CanvasApp
   def instructions
     @help.text
   end
-  # X 
+  # X
   # Terminate the session
   def X
     exit
   end
 
-  private 
+  private
 
   def numbers_array
     @numbers_array = (1..@size).map {|i| i}
@@ -148,6 +149,9 @@ class CanvasApp
       end
     end
   end
+
+
+
 
   def paint_up
     while @v_row1 > 0
