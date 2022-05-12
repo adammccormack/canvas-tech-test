@@ -1,6 +1,7 @@
 require 'canvas_app'
 
 describe CanvasApp do
+  subject(:canvas_app) { described_class.new }
 
   it { is_expected.to respond_to(:create).with(2).argument }
   it { is_expected.to respond_to(:size) }
@@ -116,11 +117,10 @@ describe CanvasApp do
         # draw the square
         canvas.vert_paint(0,5,1,'X')
         canvas.vert_paint(0,5,4,'X')
-        canvas.horiz_draw(1,4,0,'X')
-        canvas.horiz_draw(1,4,5,'X')
+        canvas.horiz_paint(1,4,0,'X')
+        canvas.horiz_paint(1,4,5,'X')
         canvas.fill(3,2,'X')
 
-        
         expect(canvas.show).to match_array(test_array2)
       end
     end
@@ -143,12 +143,11 @@ describe CanvasApp do
     end
   end
 
-  describe '#horiz_draw' do
+  describe '#horiz_paint' do
     it 'fills a canvas line between two horizontal points' do
       canvas = CanvasApp.new
       canvas.create(5,5)
       
-
       test_array = 
       [["O", "O", "O", "O", "O"],                                                  
       ["O", "O", "O", "O", "O"],                                                  
@@ -156,7 +155,7 @@ describe CanvasApp do
       ["O", "O", "O", "O", "O"],                                                  
       ["O", "O", "O", "O", "O"]] 
 
-      canvas.horiz_draw(1,3,2,'X')
+      canvas.horiz_paint(1,3,2,'X')
 
       expect(canvas.show).to match_array(test_array)
     end
