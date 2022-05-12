@@ -98,17 +98,17 @@ describe CanvasApp do
     end
 
     context 'when filling inside a shape' do
+      let (:output) { [%w[O X X X X O],
+                       %w[O X X X X O],
+                       %w[O X X X X O],
+                       %w[O X X X X O],
+                       %w[O X X X X O],
+                       %w[O X X X X O]]     
+                    }
       it 'fills the shape' do
         canvas.create(6,6)
-        output = 
-        [["O", "X", "X", "X", "X", "O"],                        
-         ["O", "X", "X", "X", "X", "O"],                        
-         ["O", "X", "X", "X", "X", "O"],                        
-         ["O", "X", "X", "X", "X", "O"],                        
-         ["O", "X", "X", "X", "X", "O"],                        
-         ["O", "X", "X", "X", "X", "O"]]
-
-        # draw the square
+       
+        # draw a square
         canvas.vert_paint(0,5,1,'X')
         canvas.vert_paint(0,5,4,'X')
         canvas.horiz_paint(1,4,0,'X')
@@ -121,14 +121,14 @@ describe CanvasApp do
   end
 
   describe '#vert_paint' do
+    let (:output) { [%w[O O O O O],
+                     %w[O O X O O],
+                     %w[O O X O O],
+                     %w[O O X O O],
+                     %w[O O O O O]]
+                    }
     it 'fills the column between vertical two points' do
       canvas.create(5,5)
-      output = 
-      [["O", "O", "O", "O", "O"],                             
-       ["O", "O", "X", "O", "O"],                          
-       ["O", "O", "X", "O", "O"],                             
-       ["O", "O", "X", "O", "O"],                             
-       ["O", "O", "O", "O", "O"]]
 
       canvas.vert_paint(1,3,2,'X')
 
@@ -137,16 +137,15 @@ describe CanvasApp do
   end
 
   describe '#horiz_paint' do
+    let (:output) { [%w[O O O O O],
+                     %w[O O O O O],
+                     %w[O X X X O],
+                     %w[O O O O O],
+                     %w[O O O O O]]
+                  } 
     it 'fills a canvas line between two horizontal points' do
       canvas.create(5,5)
       
-      output = 
-      [["O", "O", "O", "O", "O"],                                                  
-       ["O", "O", "O", "O", "O"],                                                  
-       ["O", "X", "X", "X", "O"],                                                  
-       ["O", "O", "O", "O", "O"],                                                  
-       ["O", "O", "O", "O", "O"]] 
-
       canvas.horiz_paint(1,3,2,'X')
 
       expect(canvas.show).to match_array(output)
