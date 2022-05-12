@@ -16,8 +16,6 @@ class CanvasApp
   end
 
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
-  # convert @size to array
-  # convert numbers_array to white i.e. 'O'
   def create(row = 6, col = 6)
     @row = row
     @col = col
@@ -35,7 +33,7 @@ class CanvasApp
     convert_to_grid
   end
 
-  # W F
+  # W F - Scales the canvas with the given factor F(in percentage).
   def scale(percentage = 0)
     new_size = @size*percentage/100
     @numbers_array = (1..new_size).map {|i| i}
@@ -43,20 +41,19 @@ class CanvasApp
     convert_to_grid
   end
 
-  # S
-  # presents grid without arrays showing
+  # S - Show the contents of the current canvas.
   def show
     present_grid
   end
 
 
-# L X Y C
+# L X Y C - Colours the pixel (X,Y) with colour C.
   def colour_pixel(row, col, colour)
     new_colour = colour
     @grid[row][col] = new_colour
   end
 
-# F X Y C
+# F X Y C - Fill the region R with the colour C, start at given X,Y position.
   def fill(row, col, colour)
     move_right_fill(row, col, colour)
     move_left_fill(row, col, colour)
@@ -64,6 +61,7 @@ class CanvasApp
 
   
 # V X Y1 Y2 C
+# Draw a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive).
   def vert_paint(row1, row2, col, colour)
     @v_row1 = row1
     @v_row2 = row2
@@ -80,8 +78,9 @@ class CanvasApp
 
   
 
+
   # H X1 X2 Y C
-  # Horizontal paint
+  # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
   def horiz_paint(col1, col2, row, colour)
     @h_col1 = col1
     @h_col2 = col2
@@ -98,16 +97,17 @@ class CanvasApp
     end
   end
   # ?
-  # Add program help here
-  def help
+  #Shows in program help
+  def instructions
     @help.text
   end
-  # X 
+  # X
+  # Terminate the session
   def X
     exit
   end
 
-  private 
+  private
 
   def numbers_array
     @numbers_array = (1..@size).map {|i| i}
@@ -149,6 +149,9 @@ class CanvasApp
       end
     end
   end
+
+
+
 
   def paint_up
     while @v_row1 > 0
@@ -266,8 +269,6 @@ class CanvasApp
       @row = row-1
       col = col
       current_canvas_colour = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{current_canvas_colour}"
       if current_canvas_colour != WHITE
         break
       else
@@ -280,8 +281,6 @@ class CanvasApp
       row = row+1
       col = col
       current_canvas_colour = @grid[row][col]
-      p "row_index: #{row}, col_index: #{col}"
-      p "position_value: #{current_canvas_colour}"
       if current_canvas_colour != WHITE
         break
       elsif row >= @grid.length-1
@@ -290,5 +289,4 @@ class CanvasApp
       end
     end
   end
-
 end

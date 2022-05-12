@@ -3,6 +3,7 @@ require 'help'
 describe Help do
   subject(:help) { described_class.new }
 
+  it { is_expected.to respond_to(:text) }
 
   describe '#text' do
     it 'returns app instructions' do

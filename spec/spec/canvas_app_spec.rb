@@ -1,7 +1,11 @@
 require 'canvas_app'
+require 'help'
+
+# change the arrays to shorthand [%w[0 0], %w[0 0]]
+# use let statements between describe and setup
 
 describe CanvasApp do
-  subject(:canvas_app) { described_class.new }
+  subject(:canvas) { described_class.new }
 
   it { is_expected.to respond_to(:create).with(2).argument }
   it { is_expected.to respond_to(:size) }
@@ -9,8 +13,6 @@ describe CanvasApp do
 
   describe '#create' do
     it 'creates a new canvas with row & col arguments' do
-      canvas = CanvasApp.new
-
       canvas.create(10,10)
       
       expect(canvas.show).to be_truthy
@@ -19,30 +21,27 @@ describe CanvasApp do
 
   describe '#size' do
     it 'returns the size of the canvas' do
-      canvas = CanvasApp.new
-
       canvas.create(10,10)
-
+      
       expect(canvas.size).to eq(100)
     end
   end
 
   describe '#clear' do
     it 'clears the canvas' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
-      test_array = [["O", "O"], ["O", "O"]]
+      # output = [["O", "O"], ["O", "O"]]
+      output = [%w[O O], %w[O O]]
 
       canvas.fill(0,0,'X')
       canvas.clear
       
-      expect(canvas.show).to match_array(test_array)
+      expect(canvas.show).to match_array(output)
     end
   end
 
   describe '#scale' do
     it 'scales the canvas up or down by percentage input' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
 
       canvas.scale(200)
@@ -53,7 +52,6 @@ describe CanvasApp do
 
   describe '#size' do
     it 'returns the current size of the canvas' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
 
       expect(canvas.size).to eq(4)
@@ -61,58 +59,54 @@ describe CanvasApp do
   end
 
   describe '#show' do
+    let (:output) { 
+      [["O", "O", "O", "O", "O"],                             
+       ["O", "O", "O", "O", "O"],                             
+       ["O", "O", "O", "O", "O"],                             
+       ["O", "O", "O", "O", "O"],                             
+       ["O", "O", "O", "O", "O"]]
+    }
     it 'returns the grid array layout of the canvas' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
 
-      test_array = 
-      [["O", "O", "O", "O", "O"],                             
-      ["O", "O", "O", "O", "O"],                             
-      ["O", "O", "O", "O", "O"],                             
-      ["O", "O", "O", "O", "O"],                             
-      ["O", "O", "O", "O", "O"]]
-
-      expect(canvas.show).to match_array(test_array)
+      expect(canvas.show).to match_array(output)
     end
   end
 
   describe '#colour_pixel' do
     it 'colours a single specified position on canvas' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
-      test_array = [["X", "O"], ["O", "X"]]
+      output = [["X", "O"], ["O", "X"]]
 
       canvas.colour_pixel(0,0,'X')
       canvas.colour_pixel(1,1,'X')
 
-      expect(canvas.show).to match_array(test_array)
+      expect(canvas.show).to match_array(output)
     end
   end
 
   describe '#fill' do
     context 'when canvas is one colour' do
       it 'fills the whole canvas' do
-        canvas = CanvasApp.new
         canvas.create(2,2)
-        test_array = [["X", "X"], ["X", "X"]]
+        output = [["X", "X"], ["X", "X"]]
       
         canvas.fill(0,0,'X')
 
-        expect(canvas.show).to match_array(test_array)
+        expect(canvas.show).to match_array(output)
       end
     end
 
     context 'when filling inside a shape' do
       it 'fills the shape' do
-        canvas = CanvasApp.new
         canvas.create(6,6)
-        test_array2 = 
+        output = 
         [["O", "X", "X", "X", "X", "O"],                        
-        ["O", "X", "X", "X", "X", "O"],                        
-        ["O", "X", "X", "X", "X", "O"],                        
-        ["O", "X", "X", "X", "X", "O"],                        
-        ["O", "X", "X", "X", "X", "O"],                        
-        ["O", "X", "X", "X", "X", "O"]]
+         ["O", "X", "X", "X", "X", "O"],                        
+         ["O", "X", "X", "X", "X", "O"],                        
+         ["O", "X", "X", "X", "X", "O"],                        
+         ["O", "X", "X", "X", "X", "O"],                        
+         ["O", "X", "X", "X", "X", "O"]]
 
         # draw the square
         canvas.vert_paint(0,5,1,'X')
@@ -121,43 +115,47 @@ describe CanvasApp do
         canvas.horiz_paint(1,4,5,'X')
         canvas.fill(3,2,'X')
 
-        expect(canvas.show).to match_array(test_array2)
+        expect(canvas.show).to match_array(output)
       end
     end
   end
 
   describe '#vert_paint' do
     it 'fills the column between vertical two points' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
-      test_array = 
+      output = 
       [["O", "O", "O", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "X", "O", "O"],                             
-      ["O", "O", "O", "O", "O"]]
+       ["O", "O", "X", "O", "O"],                          
+       ["O", "O", "X", "O", "O"],                             
+       ["O", "O", "X", "O", "O"],                             
+       ["O", "O", "O", "O", "O"]]
 
       canvas.vert_paint(1,3,2,'X')
 
-      expect(canvas.show).to match_array(test_array)
+      expect(canvas.show).to match_array(output)
     end
   end
 
   describe '#horiz_paint' do
     it 'fills a canvas line between two horizontal points' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
       
-      test_array = 
+      output = 
       [["O", "O", "O", "O", "O"],                                                  
-      ["O", "O", "O", "O", "O"],                                                  
-      ["O", "X", "X", "X", "O"],                                                  
-      ["O", "O", "O", "O", "O"],                                                  
-      ["O", "O", "O", "O", "O"]] 
+       ["O", "O", "O", "O", "O"],                                                  
+       ["O", "X", "X", "X", "O"],                                                  
+       ["O", "O", "O", "O", "O"],                                                  
+       ["O", "O", "O", "O", "O"]] 
 
       canvas.horiz_paint(1,3,2,'X')
 
-      expect(canvas.show).to match_array(test_array)
+      expect(canvas.show).to match_array(output)
     end
   end
+
+  # describe '#help' do
+  #   it 'returns app instructions' do
+  #     expect(canvas.instructions).to 
+  #   end
+  # end
 end
