@@ -1,7 +1,7 @@
 require 'canvas_app'
 
 describe CanvasApp do
-  subject(:canvas_app) { described_class.new }
+  subject(:canvas) { described_class.new }
 
   it { is_expected.to respond_to(:create).with(2).argument }
   it { is_expected.to respond_to(:size) }
@@ -9,7 +9,7 @@ describe CanvasApp do
 
   describe '#create' do
     it 'creates a new canvas with row & col arguments' do
-      canvas = CanvasApp.new
+      
 
       canvas.create(10,10)
       
@@ -19,8 +19,6 @@ describe CanvasApp do
 
   describe '#size' do
     it 'returns the size of the canvas' do
-      canvas = CanvasApp.new
-
       canvas.create(10,10)
 
       expect(canvas.size).to eq(100)
@@ -29,7 +27,6 @@ describe CanvasApp do
 
   describe '#clear' do
     it 'clears the canvas' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
       test_array = [["O", "O"], ["O", "O"]]
 
@@ -42,7 +39,6 @@ describe CanvasApp do
 
   describe '#scale' do
     it 'scales the canvas up or down by percentage input' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
 
       canvas.scale(200)
@@ -53,7 +49,6 @@ describe CanvasApp do
 
   describe '#size' do
     it 'returns the current size of the canvas' do
-      canvas = CanvasApp.new
       canvas.create(2,2)
 
       expect(canvas.size).to eq(4)
@@ -62,7 +57,6 @@ describe CanvasApp do
 
   describe '#show' do
     it 'returns the grid array layout of the canvas' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
 
       test_array = 
