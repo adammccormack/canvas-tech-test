@@ -1,4 +1,5 @@
 require 'canvas_app'
+require 'help'
 
 describe CanvasApp do
   subject(:canvas) { described_class.new }
@@ -9,8 +10,6 @@ describe CanvasApp do
 
   describe '#create' do
     it 'creates a new canvas with row & col arguments' do
-      
-
       canvas.create(10,10)
       
       expect(canvas.show).to be_truthy
@@ -86,7 +85,6 @@ describe CanvasApp do
   describe '#fill' do
     context 'when canvas is one colour' do
       it 'fills the whole canvas' do
-        canvas = CanvasApp.new
         canvas.create(2,2)
         test_array = [["X", "X"], ["X", "X"]]
       
@@ -98,7 +96,6 @@ describe CanvasApp do
 
     context 'when filling inside a shape' do
       it 'fills the shape' do
-        canvas = CanvasApp.new
         canvas.create(6,6)
         test_array2 = 
         [["O", "X", "X", "X", "X", "O"],                        
@@ -122,7 +119,6 @@ describe CanvasApp do
 
   describe '#vert_paint' do
     it 'fills the column between vertical two points' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
       test_array = 
       [["O", "O", "O", "O", "O"],                             
@@ -139,7 +135,6 @@ describe CanvasApp do
 
   describe '#horiz_paint' do
     it 'fills a canvas line between two horizontal points' do
-      canvas = CanvasApp.new
       canvas.create(5,5)
       
       test_array = 
@@ -152,6 +147,12 @@ describe CanvasApp do
       canvas.horiz_paint(1,3,2,'X')
 
       expect(canvas.show).to match_array(test_array)
+    end
+  end
+
+  describe '#help' do
+    it 'returns app instructions' do
+      expect(canvas.instructions).to 
     end
   end
 end
