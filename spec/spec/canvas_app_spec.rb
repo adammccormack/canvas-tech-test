@@ -28,10 +28,9 @@ describe CanvasApp do
   end
 
   describe '#clear' do
+    let (:output) { [%w[O O], %w[O O]] }
     it 'clears the canvas' do
       canvas.create(2,2)
-      # output = [["O", "O"], ["O", "O"]]
-      output = [%w[O O], %w[O O]]
 
       canvas.fill(0,0,'X')
       canvas.clear
@@ -58,14 +57,14 @@ describe CanvasApp do
     end
   end
 
+
   describe '#show' do
-    let (:output) { 
-      [["O", "O", "O", "O", "O"],                             
-       ["O", "O", "O", "O", "O"],                             
-       ["O", "O", "O", "O", "O"],                             
-       ["O", "O", "O", "O", "O"],                             
-       ["O", "O", "O", "O", "O"]]
-    }
+    let (:output) { [%w[O O O O O],
+                     %w[O O O O O],
+                     %w[O O O O O],
+                     %w[O O O O O],
+                     %w[O O O O O]]
+                  }
     it 'returns the grid array layout of the canvas' do
       canvas.create(5,5)
 
@@ -74,9 +73,9 @@ describe CanvasApp do
   end
 
   describe '#colour_pixel' do
+    let (:output) {[%w[X O], %w[O X]]}
     it 'colours a single specified position on canvas' do
       canvas.create(2,2)
-      output = [["X", "O"], ["O", "X"]]
 
       canvas.colour_pixel(0,0,'X')
       canvas.colour_pixel(1,1,'X')
@@ -86,10 +85,11 @@ describe CanvasApp do
   end
 
   describe '#fill' do
+    let (:output) {[%w[X X], %w[X X]]}
     context 'when canvas is one colour' do
       it 'fills the whole canvas' do
         canvas.create(2,2)
-        output = [["X", "X"], ["X", "X"]]
+        # output = [%w[X X], %w[X, X]]
       
         canvas.fill(0,0,'X')
 
