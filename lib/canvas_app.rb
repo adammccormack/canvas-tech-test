@@ -1,16 +1,18 @@
 require 'byebug'
+require_relative 'help'
 
 class CanvasApp
   WHITE = 'O'
   CANVAS_BORDER = 0
-  
+
   attr_reader :row, :col, :size, :grid
 
-  def initialize
+  def initialize(help = Help.new)
     @row = 0
     @col = 0
     @size = 0
     @grid = []
+    @help = help
   end
 
 
@@ -96,10 +98,11 @@ class CanvasApp
     else
     end
   end
-
   # ?
   # Add program help here
-  
+  def help
+    @help.text
+  end
   # X 
   def X
     exit
@@ -288,4 +291,5 @@ class CanvasApp
       end
     end
   end
+
 end

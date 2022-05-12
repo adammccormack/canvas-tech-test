@@ -7,7 +7,7 @@ describe Help do
   describe '#text' do
     it 'returns app instructions' do
       help = Help.new
-
+      
       expect(help.text).to match(/I M N/)
       expect(help.text).to match(/C/)
       expect(help.text).to match(/W F/)
