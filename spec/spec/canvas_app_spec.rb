@@ -1,6 +1,7 @@
 require 'canvas_app'
 
 describe CanvasApp do
+  subject(:canvas_app) { described_class.new }
 
   it { is_expected.to respond_to(:create).with(2).argument }
   it { is_expected.to respond_to(:size) }
