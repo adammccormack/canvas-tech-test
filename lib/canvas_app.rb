@@ -69,12 +69,7 @@ class CanvasApp
     @new_colour = colour
     @grid[@v_row1][col] = @new_colour
     begin_paint_v
-    # if @v_row1 <= @v_row2
-    #   paint_down
-    # elsif @v_row1 >= @v_row2
-    #   paint_up
-    # else
-    # end
+   
   end
 
   # H X1 X2 Y C
@@ -140,19 +135,22 @@ class CanvasApp
     end
   end
 
+  def v_original_colour
+    @grid[@v_row1][@v_col]
+  end
+
   def paint_down
     while @v_row1 >= 0 && @v_row1 < @grid.length-1
       @v_row1 += 1
-      original_colour = @grid[@v_row1][@v_col]
       if @v_row1 == @v_row2
         @grid[@v_row1][@v_col] = @new_colour
         break
-      elsif original_colour != WHITE
+      elsif v_original_colour != WHITE
         break
       elsif @v_row1 >= @grid.length-1
         @grid[@v_row1][@v_col] = @new_colour
         break
-      elsif original_colour == WHITE
+      elsif v_original_colour == WHITE
           @grid[@v_row1][@v_col] = @new_colour
       else
       end
@@ -162,13 +160,12 @@ class CanvasApp
   def paint_up
     while @v_row1 > 0
       @v_row1 -= 1
-      original_colour = @grid[@v_row1][@v_col]
       if @v_row1 == @v_row2
-        @grid[@v_row1][@v_col] = @new_colour
+        v_original_colour = @new_colour
         break
-      elsif original_colour == WHITE
-         @grid[@v_row1][@v_col] = @new_colour
-      elsif original_colour != WHITE
+      elsif v_original_colour == WHITE
+         v_original_colour = @new_colour
+      elsif v_original_colour != WHITE
         next
         # or break
       else
