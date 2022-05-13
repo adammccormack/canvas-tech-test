@@ -1,5 +1,8 @@
 require 'byebug'
 require_relative 'help'
+require 'simplecov'
+SimpleCov.start
+
 
 class CanvasApp
   attr_reader :size

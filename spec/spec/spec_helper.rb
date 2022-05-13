@@ -1,8 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+# Previous content of test helper now starts here
 
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

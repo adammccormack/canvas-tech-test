@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
     diff-lcs (1.5.0)
     docile (1.4.0)
     rspec (3.11.0)
@@ -29,8 +27,8 @@ PLATFORMS
   x86_64-darwin-18
 
 DEPENDENCIES
-  codecov
   rspec
+  simplecov
 
 RUBY VERSION
    ruby 3.1.2p20
