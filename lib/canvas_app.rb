@@ -1,7 +1,7 @@
 require 'byebug'
 require_relative 'help'
 require 'simplecov'
-SimpleCov.start
+
 
 
 class CanvasApp
@@ -16,6 +16,27 @@ class CanvasApp
     @help = help
   end
 
+  def start
+    loop do
+      menu
+      if @input == 'exit'
+        break
+      else
+      end
+    end
+  end
+
+  def menu
+      @help.print_menu
+      @input = (STDIN.gets.chomp)
+      if @input == 'exit'
+        return
+      elsif @input != 'exit'
+        @help.print_menu
+      elseq
+      end
+  end
+  
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
   def create(row = 6, col = 6)
     @row = row
