@@ -2,16 +2,14 @@ require 'byebug'
 require_relative 'help'
 
 class CanvasApp
+  attr_reader :size
   WHITE = 'O'
-  CANVAS_BORDER = 0
 
-  attr_reader :row, :col, :size, :grid
-
-  def initialize(help = Help.new)
-    @row = 0
-    @col = 0
-    @size = 0
-    @grid = []
+  def initialize(help = Help.new, row: 0, col: 0, size: 0, grid: [])
+    @row = row
+    @col = col
+    @size = size
+    @grid = grid
     @help = help
   end
 
@@ -36,7 +34,8 @@ class CanvasApp
   # W F - Scales the canvas with the given factor F(in percentage).
   def scale(percentage = 0)
     new_size = @size*percentage/100
-    @numbers_array = (1..new_size).map {|i| i}
+    @size = new_size
+    numbers_array
     white_array
     convert_to_grid
   end
@@ -59,7 +58,6 @@ class CanvasApp
     move_left_fill(row, col, colour)
   end
 
-  
 # V X Y1 Y2 C
 # Draw a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive).
   def vert_paint(row1, row2, col, colour)
@@ -81,11 +79,13 @@ class CanvasApp
     @grid[row][@h_col1] = @h_new_colour
     begin_paint_h
   end
+
   # ?
   #Shows in program help
   def instructions
     @help.text
   end
+
   # X
   # Terminate the session
   def X
@@ -93,6 +93,8 @@ class CanvasApp
   end
 
   private
+
+  attr_reader :row, :col, :grid
 
   def numbers_array
     @numbers_array = (1..@size).map {|i| i}
@@ -245,10 +247,6 @@ class CanvasApp
       else
       end
     end
-  end
-
-  def gridz
-    @grid[row][col]
   end
 
   def fill_down(row, col, colour)

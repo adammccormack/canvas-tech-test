@@ -9,7 +9,6 @@ describe CanvasApp do
   subject(:canvas) { described_class.new(fake_help_object) }
 
   it { is_expected.to respond_to(:create).with(2).argument }
-  it { is_expected.to respond_to(:size) }
   it { is_expected.to respond_to(:show) }
 
   describe '#create' do
@@ -17,14 +16,6 @@ describe CanvasApp do
       canvas.create(10,10)
       
       expect(canvas.show).to be_truthy
-    end
-  end
-
-  describe '#size' do
-    it 'returns the size of the canvas' do
-      canvas.create(10,10)
-      
-      expect(canvas.size).to eq(100)
     end
   end
 
@@ -46,7 +37,7 @@ describe CanvasApp do
 
       canvas.scale(200)
 
-      expect(canvas.size).to eq(4)
+      expect(canvas.size).to eq(8)
     end
   end
 
