@@ -5,7 +5,8 @@ require 'help'
 # use let statements between describe and setup
 
 describe CanvasApp do
-  subject(:canvas) { described_class.new }
+  let(:fake_help_object) { double("Help text", text: 'Hello I am some helpful text') }
+  subject(:canvas) { described_class.new(fake_help_object) }
 
   it { is_expected.to respond_to(:create).with(2).argument }
   it { is_expected.to respond_to(:size) }
@@ -152,9 +153,9 @@ describe CanvasApp do
     end
   end
 
-  # describe '#help' do
-  #   it 'returns app instructions' do
-  #     expect(canvas.instructions).to 
-  #   end
-  # end
+  describe '#help' do
+    it 'returns app instructions' do
+      expect(canvas.instructions).to eq('Hello I am some helpful text')
+    end
+  end
 end

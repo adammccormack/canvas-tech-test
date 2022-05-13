@@ -69,7 +69,6 @@ class CanvasApp
     @new_colour = colour
     @grid[@v_row1][col] = @new_colour
     begin_paint_v
-   
   end
 
   # H X1 X2 Y C
@@ -167,22 +166,24 @@ class CanvasApp
          v_original_colour = @new_colour
       elsif v_original_colour != WHITE
         next
-        # or break
       else
       end
     end
   end
 
+  def h_original_colour
+    @grid[row][col1]
+  end
+
   def paint_left
     while col1 >= 0
       col1 -= 1
-      current_canvas_colour = @grid[row][col1]
       if col1 == col2
-        @grid[row][col1] = new_colour
+        h_original_colour = @h_new_colour
         break
-      elsif current_canvas_colour == WHITE
-         @grid[row][col1] = new_colour
-      elsif current_canvas_colour != WHITE
+      elsif h_original_colour == WHITE
+        h_original_colour = @h_new_colour
+      elsif h_original_colour != WHITE
         break
       else
       end
@@ -205,6 +206,7 @@ class CanvasApp
     end
   end
 
+
   def move_left_fill(row, col, colour)
     while col >= 0
       fill_up(row, col, colour) unless col < 0
@@ -222,8 +224,7 @@ class CanvasApp
     while col >= 0
       fill_up(row, col, colour) unless col < 0
       fill_down(row, col, colour) unless col < 0
-      row = row
-      col = col+1
+      col += 1
       current_canvas_colour = @grid[row][col]
       if current_canvas_colour != WHITE
        break
@@ -235,22 +236,24 @@ class CanvasApp
     new_colour = colour
     @grid[row][col] = new_colour
     while row > 0
-      row = row-1
-      col = col
+      row -= 1
       current_canvas_colour = @grid[row][col]
       if current_canvas_colour == WHITE
          @grid[row][col] = new_colour
       elsif current_canvas_colour != WHITE
         break
-        # or break
       else
       end
     end
   end
 
+  def gridz
+    @grid[row][col]
+  end
+
   def fill_down(row, col, colour)
     new_colour = colour
-    @grid[row][col] = new_colour
+    current_canvas_colour = new_colour
     while row >= 0 && row < @grid.length-1
       row = row+1
       col = col
