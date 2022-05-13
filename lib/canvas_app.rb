@@ -18,31 +18,31 @@ class CanvasApp
     @row = row
     @col = col
     @size = row*col
-    numbers_array
-    white_array
-    convert_to_grid
+    to_numbers_array
+    to_white_array
+    to_grid
   end
 
 # C - Clears the canvas, setting all pixels to white (O).
   def clear
-    numbers_array
-    convert_to_grid
-    white_array
-    convert_to_grid
+    to_numbers_array
+    to_grid
+    to_white_array
+    to_grid
   end
 
   # W F - Scales the canvas with the given factor F(in percentage).
   def scale(percentage = 0)
     new_size = @size*percentage/100
     @size = new_size
-    numbers_array
-    white_array
-    convert_to_grid
+    to_numbers_array
+    to_white_array
+    to_grid
   end
 
   # S - Show the contents of the current canvas.
   def show
-    present_grid
+    show_grid
   end
 
 
@@ -96,19 +96,19 @@ class CanvasApp
 
   attr_reader :row, :col, :grid
 
-  def numbers_array
-    @numbers_array = (1..@size).map {|i| i}
+  def to_numbers_array
+    @to_numbers_array = (1..@size).map {|i| i}
   end
 
-  def white_array
-    @white = @numbers_array.map {|i| i = 'O'}
+  def to_white_array
+    @white = @to_numbers_array.map {|i| i = 'O'}
   end
 
-  def convert_to_grid
-    @grid = white_array.each_slice(col).to_a
+  def to_grid
+    @grid = to_white_array.each_slice(col).to_a
   end
 
-  def present_grid
+  def show_grid
     @grid.each { |r|
       puts r.each { |p| p }.join(" ")
      }
