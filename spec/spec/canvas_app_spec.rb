@@ -1,9 +1,6 @@
 require 'canvas_app'
 require 'help'
 
-# change the arrays to shorthand [%w[0 0], %w[0 0]]
-# use let statements between describe and setup
-
 describe CanvasApp do
   let(:fake_help_object) { double("Help text", text: 'Hello I am some helpful text') }
   subject(:canvas) { described_class.new(fake_help_object) }
@@ -81,7 +78,6 @@ describe CanvasApp do
     context 'when canvas is one colour' do
       it 'fills the whole canvas' do
         canvas.create(2,2)
-        # output = [%w[X X], %w[X, X]]
       
         canvas.fill(0,0,'X')
 
@@ -100,7 +96,6 @@ describe CanvasApp do
       it 'fills the shape' do
         canvas.create(6,6)
        
-        # draw a square
         canvas.vert_paint(0,5,1,'X')
         canvas.vert_paint(0,5,4,'X')
         canvas.horiz_paint(1,4,0,'X')

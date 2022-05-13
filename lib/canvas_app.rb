@@ -2,8 +2,6 @@ require 'byebug'
 require_relative 'help'
 require 'simplecov'
 
-
-
 class CanvasApp
   attr_reader :size
   WHITE = 'O'
@@ -15,7 +13,7 @@ class CanvasApp
     @grid = grid
     @help = help
   end
-
+  # in IRB, use canvas.start to begin the app.
   def start
     loop do
       menu
@@ -25,7 +23,7 @@ class CanvasApp
       end
     end
   end
-
+  
   def menu
       @help.print_menu
       @input = (STDIN.gets.chomp)
@@ -38,7 +36,7 @@ class CanvasApp
   end
   
 # I M N - Create a new M x N canvas with all pixels coloured white (O).
-  def create(row = 6, col = 6)
+  def create(row = 250, col = 250)
     @row = row
     @col = col
     @size = row*col
