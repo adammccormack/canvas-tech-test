@@ -93,7 +93,7 @@ class CanvasApp
 
   # H X1 X2 Y C
   # Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive).
-  def horiz_paint(col1, col2, row, colour)
+  def horiz_paint(col1, col2, row, colour = 'X')
     @h_col1 = col1
     @h_col2 = col2
     @h_row = row
@@ -243,7 +243,7 @@ class CanvasApp
     end
   end
 
-  def move_right_fill(row, col, colour) 
+  def move_right_fill(row, col, colour = 'X') 
     while col >= 0
       fill_up(row, col, colour) unless col < 0
       fill_down(row, col, colour) unless col < 0
