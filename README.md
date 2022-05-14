@@ -80,4 +80,22 @@ I want to be able to read instructions
 
 <img width="424" alt="Screenshot 2022-05-14 at 11 54 06" src="https://user-images.githubusercontent.com/79875785/168424010-51484dbc-83d8-4293-8407-ae95dad10d1b.png">
 
+## Showing the Canvas ##
+
+<img width="242" alt="showing-the-canvas" src="https://user-images.githubusercontent.com/79875785/168424463-fd453dfa-6e3b-485c-b097-5a300f5c8c22.png">
+
+## Drawing a Shape ##
+<img width="237" alt="drawing-shape" src="https://user-images.githubusercontent.com/79875785/168424479-e0348d99-ce54-49fc-947a-9bf4aff34efa.png">
+
+
+## Filling the Canvas ##
+<img width="305" alt="filling-canvas" src="https://user-images.githubusercontent.com/79875785/168424483-0b2c365f-0f07-4588-bb05-013bb03f0df6.png">
+
+
+## Clearing the Canvas ##
+<img width="441" alt="clearing-canvas" src="https://user-images.githubusercontent.com/79875785/168424489-0324d7fc-7382-4401-9b49-080769723d52.png">
+
+
+## Scaling the Canvas ##
+<img width="442" alt="scaling-canvas" src="https://user-images.githubusercontent.com/79875785/168424494-e89f4a25-b991-4abb-8ef1-56f8ec793181.png">
 
