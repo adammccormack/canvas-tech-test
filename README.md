@@ -78,5 +78,6 @@ I want to be able to read instructions
 
 # Creating a Canvas #
 
-![](./create-canvas.png)
+<img width="424" alt="Screenshot 2022-05-14 at 11 54 06" src="https://user-images.githubusercontent.com/79875785/168424010-51484dbc-83d8-4293-8407-ae95dad10d1b.png">
+
 
