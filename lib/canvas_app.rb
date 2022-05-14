@@ -31,7 +31,7 @@ class CanvasApp
         return
       elsif @input != 'exit'
         @help.print_menu
-      elseq
+      else
       end
   end
   
