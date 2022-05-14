@@ -69,20 +69,20 @@ class CanvasApp
 
 
 # L X Y C - Colours the pixel (X,Y) with colour C.
-  def colour_pixel(row, col, colour)
+  def colour_pixel(row, col, colour = 'X')
     new_colour = colour
     @grid[row][col] = new_colour
   end
 
 # F X Y C - Fill the region R with the colour C, start at given X,Y position.
-  def fill(row, col, colour)
+  def fill(row, col, colour = 'X')
     move_right_fill(row, col, colour)
     move_left_fill(row, col, colour)
   end
 
 # V X Y1 Y2 C
 # Draw a vertical segment of colour C in column X between rows Y1 and Y2 (inclusive).
-  def vert_paint(row1, row2, col, colour)
+  def vert_paint(row1, row2, col, colour = 'X')
     @v_row1 = row1
     @v_row2 = row2
     @v_col = col
@@ -231,12 +231,11 @@ class CanvasApp
   end
 
 
-  def move_left_fill(row, col, colour)
+  def move_left_fill(row, col, colour = 'X')
     while col >= 0
       fill_up(row, col, colour) unless col < 0
       fill_down(row, col, colour) unless col < 0
-      row = row
-      col = col-1
+      col -= 1
       current_canvas_colour = @grid[row][col]
       if current_canvas_colour != WHITE
        break

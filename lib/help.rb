@@ -20,7 +20,7 @@ class Help
                      .*///      ,* (%#########################****. *.  
           ,**///*****/////      ,* ((((((((((((((((((((.......   .. *.  
          ,,,,,,,,,///////////   ,//((((((((((((((((((((.         ..//.  
-        ,****,,**,,,,,,,,,///////  ((((((((((((((((((((..        ..     
+        ,****,,**,,,,,,,,,///////  ((((((((((((((((((((..        ..
         &&%,,,,,*****,***,,,,,,,,, ((((((((((((((((((#(....      ..     
        %&%%%&&&&&&&,,,,,****,,**,  (((((((((((((((((##(......    ..     
       .@@@&&&%&%%%&&&@&&&&%,,,,,   ((((##(((((((((((..*......... ..     
@@ -42,7 +42,7 @@ class Help
      To exit this menu type 'exit', then hit enter.
 
      Hello and welcome to Canvas App! To start simulating a canvas in your very own terminal, after familiarising yourself with the
-     please exit this menu with the above 'exit' command, and type any of the instructions from below. command list below.
+     please exit this menu with the above 'exit' command, and type any of the instructions from below.
      
      To come back to this menu, simply type 'canvas.start' from your IRB terminal : ).
 
