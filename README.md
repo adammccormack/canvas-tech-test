@@ -78,5 +78,5 @@ I want to be able to read instructions
 
 # Creating a Canvas#
 
-![Creating the Canvas](images/create-canvas.png)
+![Creating the Canvas](./create-canvas.png)
 
