@@ -76,7 +76,7 @@ I want to be able to read instructions
 ```
 
 
-# Creating a Canvas#
+# Creating a Canvas #
 
-![Creating the Canvas](create-canvas.png)
+![](./create-canvas.png)
 
