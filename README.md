@@ -74,6 +74,3 @@ As a user,
 So I can get further instructions on the app,
 I want to be able to read instructions
 ```
-
-
-/Users/m/Projects/tech-tests/Canvas/lib/assets/Screenshot 2022-05-14 at 11.54.06.png
