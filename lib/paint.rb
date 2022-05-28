@@ -84,11 +84,12 @@ class Paint
     end
   end
 
-  def begin_paint_h(col1, col2, row, colour)
+  def begin_paint_h(grid,col1, col2, row, colour)
     @h_col1 = col1
     @h_col2 = col2
     @h_row = row
     @h_new_colour = colour
+    @grid = grid
     if @h_col1 >= @h_col2
       paint_left
     elsif @h_col1 <= @h_col2

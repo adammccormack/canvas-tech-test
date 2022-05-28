@@ -82,9 +82,9 @@ class CanvasApp
   end
 
   def horiz_paint(col1, col2, row, colour)
-    @grid[row][@h_col1] = @h_new_colour
+    @grid[row][col1] = colour
     grid = @grid
-    @paint.begin_paint_h(col1, col2, row, colour)
+    @paint.begin_paint_h(grid,col1, col2, row, colour)
   end
 
   def instructions
