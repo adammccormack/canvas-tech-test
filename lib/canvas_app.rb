@@ -116,25 +116,4 @@ class CanvasApp
     @size = size
   end
 
-  def move_up(row, col)
-    while row.positive?
-      @row = row - 1
-      col = col
-      current_canvas_colour = @grid[row][col]
-      break if current_canvas_colour != WHITE
-    end
-  end
-
-  def move_down(row, col)
-    while row >= 0
-      row += 1
-      col = col
-      current_canvas_colour = @grid[row][col]
-      if current_canvas_colour != WHITE
-        break
-      elsif row >= @grid.length - 1
-        break
-      end
-    end
-  end
 end
