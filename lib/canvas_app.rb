@@ -76,21 +76,15 @@ class CanvasApp
   end
 
   def vert_paint(row1, row2, col, colour)
-    v_row1 = row1
-    v_row2 = row2
-    v_col = col
-    new_colour = colour
-    @grid[v_row1][col] = new_colour
-    @paint.begin_paint_v(v_row1, v_row2, v_col, new_colour)
+    @grid[row1][col] = colour
+    grid = @grid
+    @paint.begin_paint_v(grid, row1, row2, col, colour)
   end
 
   def horiz_paint(col1, col2, row, colour)
-    @h_col1 = col1
-    @h_col2 = col2
-    @h_row = row
-    @h_new_colour = colour
     @grid[row][@h_col1] = @h_new_colour
-    @paint.begin_paint_h
+    grid = @grid
+    @paint.begin_paint_h(col1, col2, row, colour)
   end
 
   def instructions

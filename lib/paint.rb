@@ -34,7 +34,7 @@ class Paint
        break
       end
     end
-  end 
+  end
 
   def fill_up(row, col, colour)
     new_colour = colour
@@ -70,11 +70,12 @@ class Paint
     end
   end
 
-  def begin_paint_v(v_row1, v_row2, v_col, new_colour)
-    @v_row1 = v_row1
-    @v_row2 = v_row2
-    @v_col = v_col
-    @new_colour = new_colour
+  def begin_paint_v(grid, row1, row2, col, colour)
+    @v_row1 = row1
+    @v_row2 = row2
+    @v_col = col
+    @new_colour = colour
+    @grid = grid
     if @v_row1 <= @v_row2
       paint_down
     elsif @v_row1 >= @v_row2
@@ -83,7 +84,11 @@ class Paint
     end
   end
 
-  def begin_paint_h
+  def begin_paint_h(col1, col2, row, colour)
+    @h_col1 = col1
+    @h_col2 = col2
+    @h_row = row
+    @h_new_colour = colour
     if @h_col1 >= @h_col2
       paint_left
     elsif @h_col1 <= @h_col2
