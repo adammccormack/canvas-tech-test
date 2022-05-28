@@ -10,7 +10,7 @@ class Paint
   end
 
   def current_canvas_colour
-    @grid[row1][col]
+    @grid[row][col]
   end
 
   def move_left_fill(row, col, colour = 'X')
