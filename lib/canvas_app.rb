@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'byebug'
 require_relative 'help'
 require_relative 'paint'
 require 'simplecov'
-
 
 class CanvasApp
   attr_reader :row, :col, :grid, :size
@@ -15,32 +16,28 @@ class CanvasApp
     @paint = paint
     @help = help
   end
- 
+
   def start
     loop do
       menu
-      if @input == 'exit'
-        break
-      else
-      end
+      break if @input == 'exit'
     end
   end
-  
+
   def menu
+    @help.print_menu
+    @input = gets.chomp
+    if @input == 'exit'
+      nil
+    elsif @input != 'exit'
       @help.print_menu
-      @input = (gets.chomp)
-      if @input == 'exit'
-        return
-      elsif @input != 'exit'
-        @help.print_menu
-      else
-      end
+    end
   end
 
   def create(row = 250, col = 250)
     @row = row
     @col = col
-    @size = (row*col)
+    @size = (row * col)
     to_numbers_array
     to_white_array
     to_grid
@@ -59,7 +56,7 @@ class CanvasApp
   end
 
   def scale(percentage = 0)
-    new_size = @size*percentage/100
+    new_size = @size * percentage / 100
     @size = new_size
     to_numbers_array
     to_white_array
@@ -84,7 +81,7 @@ class CanvasApp
   def horiz_paint(col1, col2, row, colour)
     @grid[row][col1] = colour
     grid = @grid
-    @paint.begin_paint_h(grid,col1, col2, row, colour)
+    @paint.begin_paint_h(grid, col1, col2, row, colour)
   end
 
   def instructions
@@ -98,11 +95,11 @@ class CanvasApp
   private
 
   def to_numbers_array
-    @to_numbers_array = (1..@size).map {|i| i}
+    @to_numbers_array = (1..@size).map { |i| i }
   end
 
   def to_white_array
-    @white = @to_numbers_array.map {|i| i = 'O'}
+    @white = @to_numbers_array.map { |_i| i = 'O' }
   end
 
   def to_grid
@@ -110,37 +107,33 @@ class CanvasApp
   end
 
   def show_grid
-    @grid.each { |r|
-      puts r.each { |p| p }.join(" ")
-     }
+    @grid.each do |r|
+      puts r.each { |p| p }.join(' ')
+    end
   end
 
   def set_size=(size)
     @size = size
   end
-  
+
   def move_up(row, col)
-    while row > 0
-      @row = row-1
+    while row.positive?
+      @row = row - 1
       col = col
       current_canvas_colour = @grid[row][col]
-      if current_canvas_colour != WHITE
-        break
-      else
-      end
+      break if current_canvas_colour != WHITE
     end
   end
-  
+
   def move_down(row, col)
     while row >= 0
-      row = row+1
+      row += 1
       col = col
       current_canvas_colour = @grid[row][col]
       if current_canvas_colour != WHITE
         break
-      elsif row >= @grid.length-1
+      elsif row >= @grid.length - 1
         break
-      else
       end
     end
   end

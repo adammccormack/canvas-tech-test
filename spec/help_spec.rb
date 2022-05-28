@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'help'
 
 describe Help do
@@ -8,7 +10,7 @@ describe Help do
   describe '#text' do
     it 'returns app instructions' do
       help = Help.new
-      
+
       expect(help.text).to match(/I M N/)
       expect(help.text).to match(/C/)
       expect(help.text).to match(/W F/)
@@ -20,8 +22,6 @@ describe Help do
       expect(help.text).to match(/F X Y C/)
       expect(help.text).to match(/X - Exit Program/)
       expect(help.text).to match(/'? - Help'/)
-      
     end
   end
 end
-
