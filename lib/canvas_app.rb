@@ -72,13 +72,13 @@ class CanvasApp
     @grid[row][col] = new_colour
   end
 
-  def vert_paint(row1, row2, col, colour)
+  def paint_vertically(row1, row2, col, colour)
     @grid[row1][col] = colour
     grid = @grid
     @paint.paint_vertically(grid, row1, row2, col, colour)
   end
 
-  def horiz_paint(col1, col2, row, colour)
+  def paint_horizontally(col1, col2, row, colour)
     @grid[row][col1] = colour
     grid = @grid
     @paint.paint_horizontally(grid, col1, col2, row, colour)
