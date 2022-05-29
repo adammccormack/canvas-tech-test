@@ -9,10 +9,20 @@ class Paint
     move_left_fill(row, col, colour)
   end
 
+  def paint_vertically(grid, col1, col2, row, colour)
+    begin_paint_v(grid, col1, col2, row, colour)
+  end
+
+  def paint_horizontally(grid, col1, col2, row, colour)
+    begin_paint_h(grid, col1, col2, row, colour)
+  end
+
+  private
+  
   def current_canvas_colour
     @grid[row][col]
   end
-
+  
   def move_left_fill(row, col, colour)
     while col >= 0
       fill_up(row, col, colour) unless col.negative?
@@ -111,21 +121,24 @@ class Paint
   def begin_paint_h(grid, col1, col2, row, colour)
     @grid = grid
     if col1 >= col2
-      paint_left
+      paint_left(grid, col1, col2, row, colour)
     elsif col1 <= col2
       paint_right(grid, col1, col2, row, colour)
     end
   end
 
-  def paint_left
+  def paint_left(grid, col1, col2, row, colour)
+    h_new_colour = colour
+    @grid = grid
     while col1 >= 0
       col1 -= 1
+      current_canvas_colour = grid[row][col1]
       if col1 == col2
-        h_original_colour = @h_new_colour
+        @grid[row][col1] = h_new_colour
         break
-      elsif h_original_colour == WHITE
-        h_original_colour = @h_new_colour
-      elsif h_original_colour != WHITE
+      elsif current_canvas_colour == WHITE
+        @grid[row][col1] = h_new_colour
+      elsif current_canvas_colour != WHITE
         break
       end
     end
@@ -138,7 +151,7 @@ class Paint
       col1 += 1
       current_canvas_colour = grid[row][col1]
       if col1 == col2
-        @grid[row][col1] = h_new_colour
+        @grid[row][col1] = h_new_colour 
         break
       elsif current_canvas_colour == WHITE
         @grid[row][col1] = h_new_colour
