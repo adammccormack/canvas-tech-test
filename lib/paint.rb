@@ -52,7 +52,6 @@ class Paint
     current_canvas_colour = new_colour
     while row >= 0 && row < @grid.length - 1
       row += 1
-      col = col
       current_canvas_colour = @grid[row][col]
       if current_canvas_colour != WHITE
         break
@@ -71,33 +70,51 @@ class Paint
 
   def begin_paint_v(grid, row1, row2, col, colour)
     @v_row1 = row1
-    @v_row2 = row2
+    v_row2 = row2
     @v_col = col
     @new_colour = colour
     @grid = grid
-    if @v_row1 <= @v_row2
-      paint_down
-    elsif @v_row1 >= @v_row2
+    if @v_row1 <= v_row2
+      paint_down(row1, col, colour)
+    elsif @v_row1 >= v_row2
       paint_up
     end
   end
 
-  def paint_down
-    while @v_row1 >= 0 && @v_row1 < @grid.length - 1
-      @v_row1 += 1
-      if @v_row1 == @v_row2
-        @grid[@v_row1][@v_col] = @new_colour
+  def paint_down(row1, col, colour)
+    row = row1
+    new_colour = colour
+    current_canvas_colour = new_colour
+    while row >= 0 && row < @grid.length - 1
+      row += 1
+      current_canvas_colour = @grid[row][col]
+      if current_canvas_colour != WHITE
         break
-      elsif v_original_colour != WHITE
+      elsif row >= @grid.length - 1
+        @grid[row][col] = new_colour
         break
-      elsif @v_row1 >= @grid.length - 1
-        @grid[@v_row1][@v_col] = @new_colour
-        break
-      elsif v_original_colour == WHITE
-        @grid[@v_row1][@v_col] = @new_colour
+      elsif current_canvas_colour == WHITE
+        @grid[row][col] = new_colour
       end
     end
   end
+
+  # def paint_down
+  #   while @v_row1 >= 0 && @v_row1 < @grid.length - 1
+  #     @v_row1 += 1
+  #     if @v_row1 == @v_row2
+  #       @grid[@v_row1][@v_col] = @new_colour
+  #       break
+  #     elsif v_original_colour != WHITE
+  #       break
+  #     elsif @v_row1 >= @grid.length - 1
+  #       @grid[@v_row1][@v_col] = @new_colour
+  #       break
+  #     elsif v_original_colour == WHITE
+  #       @grid[@v_row1][@v_col] = @new_colour
+  #     end
+  #   end
+  # end
 
   def paint_up
     while @v_row1.positive?
