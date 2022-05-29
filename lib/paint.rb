@@ -13,7 +13,7 @@ class Paint
     @grid[row][col]
   end
 
-  def move_left_fill(row, col, colour = 'X')
+  def move_left_fill(row, col, colour)
     while col >= 0
       fill_up(row, col, colour) unless col.negative?
       fill_down(row, col, colour) unless col.negative?
@@ -65,6 +65,10 @@ class Paint
     end
   end
 
+  def v_original_colour
+    @grid[@v_row1][@v_col]
+  end
+
   def begin_paint_v(grid, row1, row2, col, colour)
     @v_row1 = row1
     @v_row2 = row2
@@ -76,23 +80,6 @@ class Paint
     elsif @v_row1 >= @v_row2
       paint_up
     end
-  end
-
-  def begin_paint_h(grid, col1, col2, row, colour)
-    @h_col1 = col1
-    @h_col2 = col2
-    @h_row = row
-    @h_new_colour = colour
-    @grid = grid
-    if @h_col1 >= @h_col2
-      paint_left
-    elsif @h_col1 <= @h_col2
-      paint_right
-    end
-  end
-
-  def v_original_colour
-    @grid[@v_row1][@v_col]
   end
 
   def paint_down
@@ -125,9 +112,19 @@ class Paint
       end
     end
   end
+  
 
-  def h_original_colour
-    @grid[row][col1]
+  def begin_paint_h(grid, col1, col2, row, colour)
+    @h_col1 = col1
+    @h_col2 = col2
+    @h_row = row
+    @h_new_colour = colour
+    @grid = grid
+    if @h_col1 >= @h_col2
+      paint_left
+    elsif @h_col1 <= @h_col2
+      paint_right
+    end
   end
 
   def paint_left
@@ -158,4 +155,5 @@ class Paint
       end
     end
   end
+
 end
