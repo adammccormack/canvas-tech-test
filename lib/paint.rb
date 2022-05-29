@@ -109,15 +109,11 @@ class Paint
   end
   
   def begin_paint_h(grid, col1, col2, row, colour)
-    @h_col1 = col1
-    @h_col2 = col2
-    @h_row = row
-    @h_new_colour = colour
     @grid = grid
-    if @h_col1 >= @h_col2
+    if col1 >= col2
       paint_left
-    elsif @h_col1 <= @h_col2
-      paint_right
+    elsif col1 <= col2
+      paint_right(grid, col1, col2, row, colour)
     end
   end
 
@@ -135,15 +131,17 @@ class Paint
     end
   end
 
-  def paint_right
-    while @h_col1 >= 0
-      @h_col1 += 1
-      current_canvas_colour = @grid[@h_row][@h_col1]
-      if @h_col1 == @h_col2
-        @grid[@h_row][@h_col1] = @h_new_colour
+  def paint_right(grid, col1, col2, row, colour)
+    h_new_colour = colour
+    @grid = grid
+    while col1 >= 0
+      col1 += 1
+      current_canvas_colour = grid[row][col1]
+      if col1 == col2
+        @grid[row][col1] = h_new_colour
         break
       elsif current_canvas_colour == WHITE
-        @grid[@h_row][@h_col1] = @h_new_colour
+        @grid[row][col1] = h_new_colour
       elsif current_canvas_colour != WHITE
         break
       end
