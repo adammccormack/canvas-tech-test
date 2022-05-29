@@ -19,6 +19,7 @@ class Paint
 
   private
   
+  
   def current_canvas_colour
     @grid[row][col]
   end
