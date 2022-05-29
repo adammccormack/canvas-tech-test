@@ -115,5 +115,4 @@ class CanvasApp
   def set_size=(size)
     @size = size
   end
-
 end

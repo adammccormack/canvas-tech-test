@@ -18,12 +18,11 @@ class Paint
   end
 
   private
-  
-  
+
   def current_canvas_colour
     @grid[row][col]
   end
-  
+
   def move_left_fill(row, col, colour)
     while col >= 0
       fill_up(row, col, colour) unless col.negative?
@@ -84,8 +83,7 @@ class Paint
     end
   end
 
-  def paint_down(grid, row1, row2, col, colour)
-    
+  def paint_down(_grid, row1, row2, col, colour)
     while row1.positive? && row1 < @grid.length - 1
       row1 += 1
       current_canvas_colour = @grid[row1][col]
@@ -103,7 +101,7 @@ class Paint
     end
   end
 
-  def paint_up(grid, row1, row2, col, colour)
+  def paint_up(_grid, row1, row2, col, colour)
     @grid[row1][col] = colour
     while row1.positive?
       row1 -= 1
@@ -118,7 +116,7 @@ class Paint
       end
     end
   end
-  
+
   def begin_paint_h(grid, col1, col2, row, colour)
     if col1 >= col2
       paint_left(grid, col1, col2, row, colour)
@@ -149,7 +147,7 @@ class Paint
       col1 += 1
       current_canvas_colour = grid[row][col1]
       if col1 == col2
-        @grid[row][col1] = colour 
+        @grid[row][col1] = colour
         break
       elsif current_canvas_colour == WHITE
         @grid[row][col1] = colour
@@ -158,5 +156,4 @@ class Paint
       end
     end
   end
-
 end
