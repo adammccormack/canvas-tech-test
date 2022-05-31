@@ -41,29 +41,28 @@ A small app that simulates a canvas which can be painted on via the command line
 
 ## Installation and Setup 
 
+
+```
 Ruby version: 3.1.2
 
-1. Clone the repo on Github at: https://github.com/alldigits/canvas, Github cloning instructions: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository.
+-  Open your terminal and navigate to the folder where you cloned and downloaded canvas_app to.
 
-2. Open your terminal and navigate to the folder where you cloned and downloaded canvas_app to.
+-  From the terminal type: 
+$ 'bundle install'
 
-3. Type 'bundle install' to install the dependencies including the test suite Rspec.
+-  From the terminal enter: 
+$ irb -r './lib/canvas_app'
 
-4. From the terminal enter the following:
+- Once irb is running type:
+irb(main):001:0> canvas = CanvasApp.new
 
-- irb -r './lib/canvas_app'
+- Then type:
+irb(main):001:0> canvas.start
 
-5. Once irb is running type:
-
-- canvas = CanvasApp.new
-
-6. Then type:
-
-- canvas.start
-
-7. Then follow the instruction menu from there : )
+- Then follow the instruction menu from there : )
 
 If you need to exit the menu type 'exit' then enter
+```
 
 
 ## User Stories
